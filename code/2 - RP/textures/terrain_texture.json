@@ -1,0 +1,36 @@
+{
+  "resource_pack_name": "Simple Waystone",
+  "texture_name": "atlas.terrain",
+  "padding": 8,
+  "num_mip_levels": 4,
+  "texture_data": {
+    "simple_waystone:teleport_shard": { "textures": "textures/simple_waystone/items/teleport_shard" },
+    "simple_waystone:teleport_shard_broken": { "textures": "textures/simple_waystone/items/teleport_shard_broken" },
+    "simple_waystone:warpstone": { "textures": "textures/simple_waystone/items/warpstone" },
+
+    "ws:r_white": { "textures": "textures/simple_waystone/blocks/letters" },
+    "ws:r_light_gray": { "textures": "textures/simple_waystone/blocks/letters_light_gray" },
+    "ws:r_gray": { "textures": "textures/simple_waystone/blocks/letters_gray" },
+    "ws:r_black": { "textures": "textures/simple_waystone/blocks/letters_black" },
+    "ws:r_brown": { "textures": "textures/simple_waystone/blocks/letters_brown" },
+    "ws:r_red": { "textures": "textures/simple_waystone/blocks/letters_red" },
+    "ws:r_orange": { "textures": "textures/simple_waystone/blocks/letters_orange" },
+    "ws:r_yellow": { "textures": "textures/simple_waystone/blocks/letters_yellow" },
+    "ws:r_lime": { "textures": "textures/simple_waystone/blocks/letters_lime" },
+    "ws:r_green": { "textures": "textures/simple_waystone/blocks/letters_green" },
+    "ws:r_cyan": { "textures": "textures/simple_waystone/blocks/letters_cyan" },
+    "ws:r_light_blue": { "textures": "textures/simple_waystone/blocks/letters_light_blue" },
+    "ws:r_blue": { "textures": "textures/simple_waystone/blocks/letters_blue" },
+    "ws:r_purple": { "textures": "textures/simple_waystone/blocks/letters_purple" },
+    "ws:r_magenta": { "textures": "textures/simple_waystone/blocks/letters_magenta" },
+    "ws:r_pink": { "textures": "textures/simple_waystone/blocks/letters_pink" },
+
+    "simple_waystone:chiseled_bookshelf": { "textures": "textures/blocks/chiseled_bookshelf_occupied" },
+    "simple_waystone:crafter_top": { "textures": "textures/blocks/crafter_top_crafting" },
+    "simple_waystone:creaking_heart_top": { "textures": "textures/blocks/creaking_heart_top_active" },
+    "simple_waystone:respawn_anchor_side4": { "textures": "textures/blocks/respawn_anchor_side4" },
+    "simple_waystone:sculk_shrieker": { "textures": "textures/blocks/sculk_shrieker_can_summon_inner_top" },
+    "simple_waystone:sculk_catalyst_side": { "textures": "textures/blocks/sculk_catalyst_side_bloom" },
+    "simple_waystone:sculk_catalyst_top": { "textures": "textures/blocks/sculk_catalyst_top_bloom" }
+  }
+}
