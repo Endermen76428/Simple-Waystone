@@ -4,7 +4,7 @@
     "name": "Simple Waystone v9.0 (Texture)",
     "description": "pack.description",
     "uuid": "4d6ce949-1de7-41ec-87ab-3068434459a4",
-    "min_engine_version": [1, 21, 120],
+    "min_engine_version": [1, 21, 100],
     "version": [9, 0, 0],
     "pack_scope": "world"
   },
