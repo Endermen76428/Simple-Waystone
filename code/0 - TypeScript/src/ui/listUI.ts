@@ -59,8 +59,9 @@ export function waystoneUIList(player: Player, block?: Block, waystone?: Wayston
 }
 
 function teleport(player: Player, info: WaystoneInfo, cost: number): void {
+  const multiplyByLevel = Math.min(Math.floor((player.level -1) /15) +1, 16)
   if(player.getGameMode() != GameMode.Creative){
-    let remove = getTotalXp(cost)
+    let remove = getTotalXp(cost * multiplyByLevel)
     while(remove > 0){
       if(player.xpEarnedAtCurrentLevel > remove){
         player.addExperience(-remove)

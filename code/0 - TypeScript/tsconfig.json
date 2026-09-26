@@ -6,7 +6,7 @@
     "lib": ["ES2021", "DOM"],
 
     "rootDir": "./src",
-    "outDir": "../../development_behavior_packs/Simple Waystone (Addon)/scripts/simple_waystone",
+    "outDir": "../1 - BP/scripts/simple_waystone",
 
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
