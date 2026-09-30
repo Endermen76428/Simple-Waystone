@@ -99,7 +99,7 @@ function teleport(player: Player, info: IWaystoneInfo, cost: number): void {
     }
 
     const dimension = world.getDimension(info.dimension)
-    player.teleport(pos, {dimension, rotation: {x: rot.x, y: waystoneRotate[info.offset] ?? rot.y}})
+    player.teleport(pos, {dimension, rotation: {x: 0, y: waystoneRotate[info.offset] ?? rot.y}})
 
     system.runTimeout(() => hasWaystone(player, info.pos), 20)
   }, riders.length > 0 ? 5 : 0)
