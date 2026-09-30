@@ -323,6 +323,21 @@ item_catalog.ws:itemGroup.name.waystones=Waystones
 ## #endregion
 
 ## --------------------------------------------------
+## #region Sounds
+## --------------------------------------------------
+
+### Items
+subtitles.item.simple_waystone:golden_feather.use=Pena Dourada Usada
+subtitles.item.simple_waystone:return_scroll.use=Pergaminho da Volta Usado
+
+### Blocks
+subtitles.block.simple_waystone:waystone.teleport=Teleporte de Waystone
+subtitles.block.simple_waystone:waystone.paint=Waystone Pintada
+subtitles.block.simple_waystone:teleporter_pad.shard_break=Fragmento Quebra
+subtitles.block.simple_waystone:teleporter_pad.teleporting=Plataforma Teleportando
+## #endregion
+
+## --------------------------------------------------
 ## #region Ui
 ## --------------------------------------------------
 

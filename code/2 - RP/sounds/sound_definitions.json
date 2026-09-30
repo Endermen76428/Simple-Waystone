@@ -10,7 +10,8 @@
         { "name": "sounds/note/icechime", "is3D": false, "pitch": 0.95 },
         { "name": "sounds/note/icechime", "is3D": false, "pitch": 1.0 },
         { "name": "sounds/note/icechime", "is3D": false, "pitch": 1.05 }
-      ]
+      ],
+      "subtitle": "subtitles.item.simple_waystone:golden_feather.use"
     },
 
     // Return Scroll
@@ -22,7 +23,8 @@
         { "name": "sounds/item/book/open_flip1", "volume": 2, "is3D": false },
         { "name": "sounds/item/book/open_flip2", "volume": 2, "is3D": false },
         { "name": "sounds/item/book/open_flip3", "volume": 2, "is3D": false }
-      ]
+      ],
+      "subtitle": "subtitles.item.simple_waystone:return_scroll.use"
     },
 
     // Waystone
@@ -38,31 +40,32 @@
         { "name": "sounds/mob/endermen/portal2", "is3D": false, "pitch": 0.95 },
         { "name": "sounds/mob/endermen/portal2", "is3D": false, "pitch": 1.0 },
         { "name": "sounds/mob/endermen/portal2", "is3D": false, "pitch": 1.05 }
-      ]
+      ],
+      "subtitle": "subtitles.block.simple_waystone:waystone.teleport"
     },
     "block.simple_waystone:waystone.paint": {
       "category": "block",
       "max_distance": 16,
       "min_distance": 0,
-      "sounds": [
-        { "name": "sounds/item/dye/dye", "is3D": false }
-      ]
+      "sounds": [ { "name": "sounds/item/dye/dye", "is3D": false } ],
+      "subtitle": "subtitles.block.simple_waystone:waystone.paint"
     },
 
-    // Teleporter
-    "block.simple_waystone:teleporter.shard_break": {
+    // Teleporter Pad
+    "block.simple_waystone:teleporter_pad.shard_break": {
       "category": "block",
       "sounds": [
         { "name": "sounds/random/glass1", "is3D": false },
         { "name": "sounds/random/glass2", "is3D": false },
         { "name": "sounds/random/glass3", "is3D": false }
-      ]
+      ],
+      "subtitle": "subtitles.block.simple_waystone:teleporter_pad.shard_break"
     },
-
     "block.simple_waystone:teleporter_pad.teleporting": {
       "category": "block",
       "max_distance": 16,
-      "sounds": [ { "name": "sounds/simple_waystone/teleporter_pad/teleporting" } ]
+      "sounds": [ { "name": "sounds/simple_waystone/teleporter_pad/teleporting" } ],
+      "subtitle": "subtitles.block.simple_waystone:teleporter_pad.teleporting"
     },
 
     // Warnings

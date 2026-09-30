@@ -114,7 +114,7 @@ function getTotalXp(level: number): number {
 function hasWaystone(player: Player, pos: Vector3): void {
   try{
     const block = player.dimension.getBlock(pos)
-    if(!block){
+    if(!block || !block.isValid){
       system.runTimeout(() => { hasWaystone(player, pos) }, 5)
       return
     }
@@ -122,7 +122,9 @@ function hasWaystone(player: Player, pos: Vector3): void {
       waystoneInfo.removeWaystone(pos, player.dimension.id)
       apiWarn.notify(player, "warning.simple_waystone:waystone.corrupted", {type: "actionbar", sound: "warn.ender_addon_pack:bass"})
     }
-  } catch {}
+  } catch {
+    system.runTimeout(() => { hasWaystone(player, pos) }, 5)
+  }
 }
 
 const waystonOffset: { [key: string]: ["x" | "z", -0.5 | 0.5] } = {

@@ -26,8 +26,9 @@ export const teleporterPadStep = new class TeleporterPadStep {
 
     entity.setDynamicProperty("tp_block", block.location)
 
-    entity instanceof Player && entity.playSound("block.simple_waystone:teleporter_pad.teleporting", {location: block.bottomCenter()})
-    block.dimension.spawnParticle("simple_waystone:teleporter_pad_ring", block.bottomCenter())
+    const bottomCenter = block.bottomCenter()
+    block.dimension.playSound("block.simple_waystone:teleporter_pad.teleporting", bottomCenter)
+    block.dimension.spawnParticle("simple_waystone:teleporter_pad_ring", bottomCenter)
     teleporterPadTimer.set(id, system.runTimeout(() => {
       if(!entity.isValid) return
       const lastPos = (r => typeof r == "object" ? r : entity.location)(entity.getDynamicProperty("tp_block"))
@@ -39,9 +40,9 @@ export const teleporterPadStep = new class TeleporterPadStep {
         if(teleporter.broken){
           teleporterPadSpace.setEmptyPad(block)
           teleporterPadInfo.removeShard(block)
-          entity instanceof Player && apiWarn.playSound(entity, "block.simple_waystone:teleporter.shard_break", {delaySound: 1, volume: 2})
+          system.run(() => { block.dimension.playSound("block.simple_waystone:teleporter_pad.shard_break", bottomCenter) })
         }
-        entity instanceof Player && apiWarn.playSound(entity, "block.simple_waystone:waystone.teleport", {delaySound: 1})
+        system.run(() => { block.dimension.playSound("block.simple_waystone:waystone.teleport", bottomCenter) })
 
         entity.addTag("simple_waystone:teleporter")
         entity.teleport({x: pos.x +0.5, y: pos.y +0.5, z: pos.z +0.5}, {dimension: world.getDimension(teleporter.dimension)})
