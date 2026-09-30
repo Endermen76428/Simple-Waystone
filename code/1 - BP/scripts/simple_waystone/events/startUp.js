@@ -1,17 +1,18 @@
-import { system, ItemStack, EquipmentSlot, EntityComponentTypes, GameMode, ItemComponentTypes } from "@minecraft/server";
+import { EntityComponentTypes, EquipmentSlot, GameMode, ItemComponentTypes, ItemStack, system } from "@minecraft/server";
 import { teleporterPadInteract } from "../functions/teleporter/interact";
 import { warpstonePedestalInfo } from "../lib/warpstonePedestal/info";
 import { apiWaystoneSpace, dyesList } from "../lib/waystone/space";
 import { teleporterPadPlace } from "../functions/teleporter/place";
-import { teleporterPadStep } from "../functions/teleporter/step";
 import { AddonConfig, upgradeXpDiscountItem } from "../variables";
+import { teleporterPadStep } from "../functions/teleporter/step";
 import { waystoneUISettings } from "../ui/settingsUI";
 import { waystonesList } from "../lib/waystone/list";
 import { waystoneInfo } from "../lib/waystone/info";
+import { apiWarn } from "../../0-lib/player/warn";
 import { waystoneUICreate } from "../ui/createUI";
 import { apiCooldown } from "../lib/apiCooldown";
 import { waystoneUIList } from "../ui/listUI";
-import { apiWarn } from "../lib/player/warn";
+import { apiConfig } from "../lib/apiConfig";
 const replaceBlock = ["minecraft:air", "minecraft:lava", "minecraft:water"];
 system.beforeEvents.startup.subscribe(({ blockComponentRegistry: customB, itemComponentRegistry: customI }) => {
     customB.registerCustomComponent("ws:waystone", {
@@ -66,7 +67,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry: customB, itemCo
             const cooldown = apiCooldown.timeUp(player, "waystoneCooldown");
             if (!cooldown.end)
                 return apiWarn.notify(player, { translate: "warning.simple_waystone:waysone.teleport_cooldown", with: [`${cooldown.time}s`] }, { type: "actionbar" });
-            waystoneUIList(player, block, waystone);
+            waystoneUIList(player, block, waystone, undefined, apiConfig.getConfig(player, "publicFirst"));
         }
     });
     customB.registerCustomComponent("ws:warpstone_pedestal", {

@@ -2,8 +2,8 @@ import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
 import { colorDimension, waystoneListIconPath } from "./listUI";
 import { waystonesList } from "../lib/waystone/list";
 import { waystoneInfo } from "../lib/waystone/info";
+import { apiWarn } from "../../0-lib/player/warn";
 import { apiOrganize } from "../lib/apiOrganize";
-import { apiWarn } from "../lib/player/warn";
 export function waystoneUIRemove(player) {
     const allWaystones = apiOrganize.organizeDimension(player, waystonesList.getPlayerWaystones(player.id));
     if (allWaystones.length < 1)

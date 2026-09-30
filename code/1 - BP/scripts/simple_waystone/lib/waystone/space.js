@@ -1,11 +1,11 @@
-import { ItemStack, BlockPermutation, EntityComponentTypes, EquipmentSlot, GameMode } from "@minecraft/server";
+import { BlockPermutation, EntityComponentTypes, EquipmentSlot, GameMode, ItemStack } from "@minecraft/server";
 import { AddonConfig, upgradeXpDiscount } from "../../variables";
+import { apiScoreboard } from "../../../0-lib/math/scoreboard";
 import { MessageFormData } from "@minecraft/server-ui";
-import { waystoneInfo } from "./info";
+import { apiWarn } from "../../../0-lib/player/warn";
 import { apiItemAmount } from "../item/itemAmount";
-import { apiScoreboard } from "../math/scoreboard";
 import { waystoneCache } from "../cache/waystone";
-import { apiWarn } from "../player/warn";
+import { waystoneInfo } from "./info";
 export const apiWaystoneSpace = new class ApiWaystoneSpace {
     setOff(player, block) {
         const above = block.above(1);
@@ -75,8 +75,8 @@ export const apiWaystoneSpace = new class ApiWaystoneSpace {
         });
     }
     calculateCost(pos, waystone) {
-        const disX = waystone.pos.x - pos.x + 0.5;
-        const disZ = waystone.pos.z - pos.z + 0.5;
+        const disX = waystone.x - pos.x + 0.5;
+        const disZ = waystone.z - pos.z + 0.5;
         const distance = Math.floor(Math.sqrt(disX * disX + disZ * disZ));
         const cost = Math.floor(distance / AddonConfig.xpByDistance);
         return cost < AddonConfig.xpMax ? { cost, distance } : { cost: AddonConfig.xpMax, distance };

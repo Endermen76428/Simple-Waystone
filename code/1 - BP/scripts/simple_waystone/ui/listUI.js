@@ -1,11 +1,11 @@
-import { world, system, GameMode, EntityComponentTypes } from "@minecraft/server";
+import { EntityComponentTypes, GameMode, system, world } from "@minecraft/server";
 import { waystoneInfo } from "../lib/waystone/info";
 import { apiTeleportItem } from "../lib/item/teleportItem";
 import { apiWaystoneSpace } from "../lib/waystone/space";
 import { ActionFormData } from "@minecraft/server-ui";
 import { waystonesList } from "../lib/waystone/list";
+import { apiWarn } from "../../0-lib/player/warn";
 import { apiCooldown } from "../lib/apiCooldown";
-import { apiWarn } from "../lib/player/warn";
 import { AddonConfig } from "../variables";
 const xpSprite = ["", " - \ue701", " - \ue702", " - \ue703", "\ue700"];
 export const colorDimension = { "minecraft:overworld": "§2", "minecraft:nether": "§4", "minecraft:the_end": "§5" };
@@ -18,7 +18,7 @@ export function waystoneUIList(player, block, waystone, item, publicList = false
         return waystoneUIList(player, block, waystone, item, !publicList);
     }
     const buttons = waystones.map(value => {
-        const calc = player.dimension.id != value.dimension ? { cost: AddonConfig.xpByDimension, distance: -1 } : apiWaystoneSpace.calculateCost(waystone?.pos ?? (block?.location ?? player.location), value);
+        const calc = player.dimension.id != value.dimension ? { cost: AddonConfig.xpByDimension, distance: -1 } : apiWaystoneSpace.calculateCost(waystone?.pos ?? (block?.location ?? player.location), value.pos);
         const cost = AddonConfig.disableDiscount ? calc.cost : Math.floor(calc.cost * ((waystone?.xpDiscount ?? 1) >= value.xpDiscount ? value.xpDiscount : (waystone?.xpDiscount ?? 1)));
         const name = value.name.length > 20 ? value.name.slice(0, 19) + "..." : value.name;
         return {

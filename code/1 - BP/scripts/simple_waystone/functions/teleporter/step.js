@@ -1,8 +1,8 @@
-import { world, system, Player } from "@minecraft/server";
+import { Player, system, world } from "@minecraft/server";
 import { teleporterPadCache } from "../../lib/cache/teleporter";
 import { teleporterPadSpace } from "../../lib/teleporter/space";
 import { teleporterPadInfo } from "../../lib/teleporter/info";
-import { apiWarn } from "../../lib/player/warn";
+import { apiWarn } from "../../../0-lib/player/warn";
 import { teleporterPadTimer } from "./place";
 const lastDate = {};
 export const teleporterPadStep = new class TeleporterPadStep {

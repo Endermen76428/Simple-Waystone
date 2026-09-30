@@ -1,5 +1,5 @@
 ## --------------------------------------------------
-## Blocks
+## #region Blocks
 ## --------------------------------------------------
 
 tile.ws:waystone_polished_andesite.name=Waystone de Andesito Polido
@@ -299,11 +299,10 @@ tile.ws:warpstone_pedestal.name=Pedestal de Warpstone
 
 tile.ws:teleporter_pad.name=Plataforma de Teleporte
 tile.ws:teleporter_pad_empty.name=Plataforma de Teleporte Vazia
-
-
+## #endregion
 
 ## --------------------------------------------------
-## Items
+## #region Items
 ## --------------------------------------------------
 
 item.bedrock_awakening:simple_waystone=§kSimple Waystone
@@ -313,20 +312,18 @@ item.ws:golden_feather=Pena Dourada
 item.ws:return_scroll=Pergaminho da Volta
 item.ws:teleport_shard=Fragmento de Teleporte
 item.ws:teleport_shard_broken=Fragmento de Teleporte Quebrado
-
-
+## #endregion
 
 ## --------------------------------------------------
-## Item Catalog
+## #region Item Catalog
 ## --------------------------------------------------
 
 item_catalog.ws:itemGroup.name.waystone_item=Itens da Waystone
 item_catalog.ws:itemGroup.name.waystones=Waystones
-
-
+## #endregion
 
 ## --------------------------------------------------
-## Ui
+## #region Ui
 ## --------------------------------------------------
 
 ui.simple_waystone:waystone.create.title=Criar Waystone
@@ -342,6 +339,7 @@ ui.simple_waystone:waystone.settings_menu.button.edit=Editar
 ui.simple_waystone:waystone.edit.title=Editar Waystone
 
 ui.simple_waystone:waystone.settings.toggle.organize=A-z / Z-a
+ui.simple_waystone:waystone.settings.toggle.public_first=Primeiro Waystones Públicas
 ui.simple_waystone:waystone.settings.dropdown.organizeDimension=Ordem das Dimensões:
 ui.simple_waystone:waystone.settings.dropdown.organize_dimension.current=Atual
 ui.simple_waystone:waystone.settings.dropdown.organize_dimension.overworld-nether-the_end=§aOverworld§r>§4Nether§r>§5End
@@ -423,6 +421,7 @@ warning.simple_waystone:upgrades.xp_cost.success=Teleportes usando essa waystone
 warning.simple_waystone:teleporter.not_owner=§cVocê não é o dono dessa Plataforma de Teleporte!
 warning.simple_waystone:teleporter.place_shard.same=§cEsse Fragmento de Teleporte pertence a essa Plataforma, não pode colocar aqui.
 warning.simple_waystone:teleporter.place_shard.target_no_longer_exist=A localização registrada no Fragmente de Teleporter não existe mais.
+## #endregion
 
 
 

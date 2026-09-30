@@ -4,7 +4,7 @@ import { teleporterPadCache } from "../lib/cache/teleporter";
 import { teleporterPadSpace } from "../lib/teleporter/space";
 import { teleporterPadInfo } from "../lib/teleporter/info";
 import { waystoneInfo } from "../lib/waystone/info";
-import { apiWarn } from "../lib/player/warn";
+import { apiWarn } from "../../0-lib/player/warn";
 world.beforeEvents.playerBreakBlock.subscribe(ev => {
     const hasSilk = ev.itemStack?.getComponent(ItemComponentTypes.Enchantable)?.hasEnchantment("minecraft:silk_touch") ?? false;
     if (ev.block.hasTag("ws:waystone"))

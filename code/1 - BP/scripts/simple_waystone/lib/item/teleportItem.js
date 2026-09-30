@@ -1,8 +1,8 @@
-import { EquipmentSlot, EntityComponentTypes, GameMode } from "@minecraft/server";
+import { EntityComponentTypes, EquipmentSlot, GameMode } from "@minecraft/server";
+import { apiWarn } from "../../../0-lib/player/warn";
 import { AddonConfig } from "../../variables";
 import { apiItemAmount } from "./itemAmount";
 import { apiCooldown } from "../apiCooldown";
-import { apiWarn } from "../player/warn";
 export const apiTeleportItem = new class ApiTeleportItem {
     "ws:warpstone"(player) {
         apiCooldown.set(player, "warpstoneCooldown", AddonConfig.itemCooldown);

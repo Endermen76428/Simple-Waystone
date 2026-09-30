@@ -1,6 +1,6 @@
+import { apiScoreboard } from "../../../0-lib/math/scoreboard";
 import { world } from "@minecraft/server";
 import { AddonConfig } from "../../variables";
-import { apiScoreboard } from "../math/scoreboard";
 export const globalCacheWaystones = new Map();
 export const globalCachePlayerWaystones = new Map();
 export const globalCacheTeleporterPad = new Map();

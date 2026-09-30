@@ -1,16 +1,19 @@
-import { world, ItemStack } from "@minecraft/server";
+import { ItemStack, world } from "@minecraft/server";
+import { apiScoreboard } from "../../../0-lib/math/scoreboard";
+import { apiWarn } from "../../../0-lib/player/warn";
 import { upgradeXpDiscount } from "../../variables";
-import { apiScoreboard } from "../math/scoreboard";
 import { waystoneCache } from "../cache/waystone";
 import { colorDimension } from "../../ui/listUI";
 import { apiOrganize } from "../apiOrganize";
 import { waystonesList } from "./list";
-import { apiWarn } from "../player/warn";
 export const waystoneInfo = new class ApiWaystoneInfo {
     saveWaystone(player, info) {
         const name = apiOrganize.sameNames(info.name, waystonesList.getPlayerWaystones(player.id).map(value => value.name));
         const access = info.access ? 1 : 0;
         const id = player.dimension.id.replace("minecraft:", "") + `/${info.pos.x},${info.pos.y},${info.pos.z}`;
+        const disX = player.location.x - info.pos.x;
+        const disZ = player.location.z - info.pos.z;
+        console.warn(Math.atan2(disZ, disX));
         const waystoneScore = apiScoreboard.getObj(`simple_waystone/w/${id}`);
         waystoneScore.setScore(`0/${player.id}`, 0);
         waystoneScore.setScore(`1/${name}`, 0);

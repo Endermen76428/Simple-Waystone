@@ -1,9 +1,9 @@
-import { BlockPermutation, ItemStack, EquipmentSlot } from "@minecraft/server";
-import { teleporterPadInfo } from "../../lib/teleporter/info";
+import { BlockPermutation, EquipmentSlot, ItemStack } from "@minecraft/server";
 import { teleporterPadCache } from "../../lib/cache/teleporter";
-import { apiEquippable } from "../../lib/player/equippable";
-import { apiWarn } from "../../lib/player/warn";
 import { teleporterPadSpace } from "../../lib/teleporter/space";
+import { teleporterPadInfo } from "../../lib/teleporter/info";
+import { apiEquippable } from "../../lib/player/equippable";
+import { apiWarn } from "../../../0-lib/player/warn";
 export const teleporterPadInteract = new class TeleporterPadInteract {
     place(block, player) {
         const item = apiEquippable.getItem(player, EquipmentSlot.Mainhand);

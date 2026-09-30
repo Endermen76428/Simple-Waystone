@@ -1,8 +1,8 @@
 import { apiWaystoneSpace } from "../lib/waystone/space";
-import { waystoneInfo } from "../lib/waystone/info";
 import { ModalFormData } from "@minecraft/server-ui";
+import { waystoneInfo } from "../lib/waystone/info";
+import { apiWarn } from "../../0-lib/player/warn";
 import { colorDimension } from "./listUI";
-import { apiWarn } from "../lib/player/warn";
 export function waystoneUICreate(player, block) {
     new ModalFormData()
         .title(`ui.simple_waystone:waystone.create.title`)

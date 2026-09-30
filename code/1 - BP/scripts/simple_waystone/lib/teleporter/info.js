@@ -1,8 +1,8 @@
 import { teleporterPadTimer } from "../../functions/teleporter/place";
 import { system } from "@minecraft/server";
+import { apiScoreboard } from "../../../0-lib/math/scoreboard";
 import { globalCacheTeleporterPad } from "../cache/global";
 import { teleporterPadCache } from "../cache/teleporter";
-import { apiScoreboard } from "../math/scoreboard";
 export const teleporterPadInfo = new class TeleporterPadInfo {
     create(id) {
         apiScoreboard.addObj("simple_waystone/t/" + id);
@@ -10,7 +10,7 @@ export const teleporterPadInfo = new class TeleporterPadInfo {
     }
     remove(block) {
         const id = `${block.dimension.id.replace("minecraft:", "")}/${block.x},${block.y},${block.z}`;
-        apiScoreboard.removeObj("simple_waystone/t/" + id, true);
+        apiScoreboard.removeObj("simple_waystone/t/" + id);
         system.clearRun(teleporterPadTimer.get(id) ?? 0);
         teleporterPadTimer.delete(id);
         teleporterPadCache.remove(id);

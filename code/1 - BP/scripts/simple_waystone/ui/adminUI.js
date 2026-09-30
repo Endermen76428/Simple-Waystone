@@ -1,6 +1,6 @@
 import { ModalFormData } from "@minecraft/server-ui";
+import { apiWarn } from "../../0-lib/player/warn";
 import { world } from "@minecraft/server";
-import { apiWarn } from "../lib/player/warn";
 import { AddonConfig } from "../variables";
 export function waystoneUIAdmin(player) {
     new ModalFormData()
