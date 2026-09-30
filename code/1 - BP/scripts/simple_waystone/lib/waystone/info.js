@@ -1,19 +1,25 @@
 import { ItemStack, world } from "@minecraft/server";
 import { apiScoreboard } from "../../../0-lib/math/scoreboard";
+import { apiNumbers } from "../../../0-lib/math/numbers";
 import { apiWarn } from "../../../0-lib/player/warn";
 import { upgradeXpDiscount } from "../../variables";
 import { waystoneCache } from "../cache/waystone";
 import { colorDimension } from "../../ui/listUI";
+import { exitDirection } from "../../ui/infoUI";
 import { apiOrganize } from "../apiOrganize";
 import { waystonesList } from "./list";
+const turnDegress = 180 / Math.PI;
+const inveseSplit = 1 / 90;
 export const waystoneInfo = new class ApiWaystoneInfo {
     saveWaystone(player, info) {
         const name = apiOrganize.sameNames(info.name, waystonesList.getPlayerWaystones(player.id).map(value => value.name));
         const access = info.access ? 1 : 0;
         const id = player.dimension.id.replace("minecraft:", "") + `/${info.pos.x},${info.pos.y},${info.pos.z}`;
-        const disX = player.location.x - info.pos.x;
-        const disZ = player.location.z - info.pos.z;
-        console.warn(Math.atan2(disZ, disX));
+        const disX = player.location.x - (info.pos.x + 0.5);
+        const disZ = player.location.z - (info.pos.z + 0.5);
+        const degress = Math.atan2(-disX, disZ) * turnDegress + 225;
+        const offsetIndex = apiNumbers.wrapRange(Math.floor(degress * inveseSplit) + 1, 1, 4);
+        const offset = exitDirection[offsetIndex] ?? "auto";
         const waystoneScore = apiScoreboard.getObj(`simple_waystone/w/${id}`);
         waystoneScore.setScore(`0/${player.id}`, 0);
         waystoneScore.setScore(`1/${name}`, 0);
@@ -29,7 +35,7 @@ export const waystoneInfo = new class ApiWaystoneInfo {
             name: info.name,
             pos: info.pos,
             dimension: player.dimension.id,
-            offset: "auto",
+            offset,
             xpDiscount: 1,
             icon: 0,
             color: 0,

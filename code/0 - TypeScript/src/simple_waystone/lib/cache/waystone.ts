@@ -1,6 +1,6 @@
 import { globalCachePlayerWaystones, globalCacheWaystones, globalCacheWaystonesPublic } from "./global"
-import { exitDirection } from "../../ui/infoUI"
 import { IWaystoneInfo } from "../waystone/info"
+import { exitDirection } from "../../ui/infoUI"
 
 export const waystoneCache = new class WaystoneCache {
   private getPlayerCache(playerId: string): IPlayerCacheStructure {
