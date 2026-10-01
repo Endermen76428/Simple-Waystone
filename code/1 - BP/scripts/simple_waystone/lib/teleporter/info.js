@@ -1,6 +1,6 @@
 import { teleporterPadTimer } from "../../functions/teleporter/place";
-import { system } from "@minecraft/server";
 import { apiScoreboard } from "../../../0-lib/math/scoreboard";
+import { system } from "@minecraft/server";
 import { globalCacheTeleporterPad } from "../cache/global";
 import { teleporterPadCache } from "../cache/teleporter";
 export const teleporterPadInfo = new class TeleporterPadInfo {

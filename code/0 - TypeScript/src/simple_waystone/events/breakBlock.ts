@@ -33,7 +33,7 @@ const breakBlockController: { [key: string]: (player: Player, block: Block, hasS
     })
   },
 
-  "simple_waystone:warpstone_pedestal": (player, block, hasSilk) => {
+  "simple_waystone:warpstone_pedestal": (player, block) => {
     system.run(() => warpstonePedestalInfo.remove(block.location, block.dimension.id) )
   },
 

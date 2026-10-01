@@ -32,7 +32,7 @@ const breakBlockController = {
             apiWarn.playSound(player, "warn.ender_addon_pack:deactive");
         });
     },
-    "simple_waystone:warpstone_pedestal": (player, block, hasSilk) => {
+    "simple_waystone:warpstone_pedestal": (player, block) => {
         system.run(() => warpstonePedestalInfo.remove(block.location, block.dimension.id));
     },
     "simple_waystone:teleporter_pad": (player, block, hasSilk) => {
