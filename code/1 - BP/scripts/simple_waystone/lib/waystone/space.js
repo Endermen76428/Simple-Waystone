@@ -54,8 +54,10 @@ export const apiWaystoneSpace = new class ApiWaystoneSpace {
         if (upgradeItem)
             waystone.dimension.spawnItem(new ItemStack(upgradeItem), player.location);
         waystoneCache.updateDiscount(discount, id);
+        waystoneCache.updateLock(true, id);
+        apiScoreboard.setScore(`simple_waystone/w/${id}`, "lock", 1);
         apiScoreboard.setScore(`simple_waystone/w/${id}`, "xp_discount", discount);
-        apiWarn.notify(player, { translate: "warning.simple_waystone:upgrades.xp_cost.success", with: [`${100 - discount}`] }, { sound: "warn.ender_addon_pack:levelup" });
+        apiWarn.notify(player, { translate: "block.warn.simple_waystone:upgrades.xp_cost.success", with: [`${100 - discount}`] }, { sound: "warn.ender_addon_pack:levelup" });
         apiItemAmount.decreaseHand(player, item);
     }
     waystoneToWarpstone(player, waystone) {

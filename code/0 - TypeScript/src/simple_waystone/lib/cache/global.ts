@@ -23,7 +23,7 @@ export const apiGlobalCache = new class ApiGlobalCache {
 
     const scoreboards = world.scoreboard.getObjectives()
 
-    let date = Date.now()
+    // let date = Date.now()
     const { players, waystones, teleporter } = scoreboards.reduce<{players: ScoreboardObjective[], waystones: ScoreboardObjective[], teleporter: ScoreboardObjective[]}>((acc, score) => {
       const type = score.id.slice(15, 18)
       switch(type){
@@ -86,7 +86,8 @@ export const apiGlobalCache = new class ApiGlobalCache {
         icon: waystoneScore.getScore("icon") ?? 0,
         color: waystoneScore.getScore("color") ?? 0,
         claim,
-        favorite
+        favorite,
+        lock: waystoneScore.getScore("lock") == 1
       })
     }
   }

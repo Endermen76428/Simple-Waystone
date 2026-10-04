@@ -19,6 +19,7 @@ export function waystoneUIInfo(player, block) {
         .title("ui.simple_waystone:waystone.info.title")
         .button({ translate: "ui.simple_waystone:waystone.info.xp_discount", with: [`${100 - (discount)}§r%`] }, upgradeXpTexture[discount] ?? "textures/blocks/barrier")
         .button({ "rawtext": [{ "translate": "ui.simple_waystone:waystone.info.exit_direction" }, { "translate": `ui.simple_waystone:waystone.info.exit_direction.${waystone.offset}` }] }, `textures/simple_waystone/ui/icons/offset/${waystone.offset}`)
+        .button({ translate: "ui.simple_waystone:waystone.info.lock." + (waystone.lock ? "1" : "0") }, waystone.lock ? "textures/ui/icon_lock" : "textures/simple_waystone/ui/icons/unlocked")
         .show(player).then(({ canceled, selection }) => {
         if (canceled || selection == undefined)
             return;
@@ -26,13 +27,15 @@ export function waystoneUIInfo(player, block) {
             return removeXpDiscount(player, id, discount);
         if (selection == 1)
             return changeExitDir(player, id, dirIndex, block);
+        if (selection == 2)
+            return changeLock(player, id, waystone.lock, block);
     });
 }
 function removeXpDiscount(player, id, discount) {
     const item = upgradeXpDiscount[discount];
     if (!item)
         return;
-    apiWarn.notify(player, "warning.simple_waystone:upgrades.xp_cost.removed", { sound: "warn.ender_addon_pack:pop" });
+    apiWarn.notify(player, "block.warn.simple_waystone:upgrades.xp_cost.removed", { sound: "warn.ender_addon_pack:pop" });
     player.dimension.spawnItem(new ItemStack(item), player.location);
     apiScoreboard.setScore(`simple_waystone/w/${id}`, "xp_discount", 100);
     waystoneCache.updateDiscount(100, id);
@@ -41,6 +44,11 @@ function changeExitDir(player, id, dir, block) {
     const index = apiNumbers.wrapRange(dir + 1, 0, 4);
     apiScoreboard.setScore(`simple_waystone/w/${id}`, "offset", index);
     waystoneCache.updateExitOffset(index, id);
+    waystoneUIInfo(player, block);
+}
+function changeLock(player, id, current, block) {
+    apiScoreboard.setScore(`simple_waystone/w/${id}`, "lock", (current ? 0 : 1));
+    waystoneCache.updateLock(!current, id);
     waystoneUIInfo(player, block);
 }
 const upgradeXpTexture = {

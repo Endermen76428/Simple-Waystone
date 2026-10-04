@@ -5,11 +5,12 @@ import { world, system } from "@minecraft/server"
 import { AddonConfig } from "../variables"
 
 system.run(() => {
-  if(world.getDynamicProperty("sw:8.0")) apiGlobalCache.load()
+  if(world.getDynamicProperty("sw:9.0")) apiGlobalCache.load()
 
   if(!world.getDynamicProperty("sw:7.0")) return convert_v7_0()
   if(!world.getDynamicProperty("sw:7.3")) return convert_v7_3()
   if(!world.getDynamicProperty("sw:8.0")) return convert_v8_0()
+  if(!world.getDynamicProperty("sw:9.0")) return convert_v9_0()
 })
 
 function convert_v7_0(): void {
@@ -136,6 +137,22 @@ function convert_v8_0(): void {
   world.setDynamicProperty("config:item_cooldown", AddonConfig.itemCooldown)
   world.setDynamicProperty("config:disable_discount", AddonConfig.disableDiscount)
   world.setDynamicProperty("sw:8.0", true)
+
+  convert_v9_0()
+}
+
+function convert_v9_0(): void {
+  const scoreboards = world.scoreboard.getObjectives()
+  for(let i = 0, len = scoreboards.length; i < len; i++){
+    const score = scoreboards[i]
+    if(!score) continue
+    if(score.displayName.slice(15, 18) == "/p/") continue
+
+    const xpUpgrade = score.getScore("xp_discount")
+    score.addScore("lock", xpUpgrade == undefined || xpUpgrade == 100 ? 0 : 1)
+  }
+
+  world.setDynamicProperty("sw:9.0", true)
   apiGlobalCache.load()
 }
 

@@ -27,11 +27,12 @@ export const waystoneInfo = new class ApiWaystoneInfo {
     const waystoneScore = apiScoreboard.getObj(`simple_waystone/w/${id}`)
     waystoneScore.setScore(`0/${player.id}`, 0) // Owner
     waystoneScore.setScore(`1/${name}`, 0) // Waystone Name
-    waystoneScore.setScore(`access`, access)
-    waystoneScore.setScore(`icon`, 0)
-    waystoneScore.setScore(`color`, 0)
-    waystoneScore.setScore(`xp_discount`, 100)
-    waystoneScore.setScore(`offset`, 0)
+    waystoneScore.setScore("access", access)
+    waystoneScore.setScore("icon", 0)
+    waystoneScore.setScore("color", 0)
+    waystoneScore.setScore("xp_discount", 100)
+    waystoneScore.setScore("offset", offsetIndex)
+    waystoneScore.setScore("lock", 0)
 
     apiScoreboard.getObj(`simple_waystone/p/${player.id}`).setScore(`${access}/${id}`, 0)
 
@@ -46,7 +47,8 @@ export const waystoneInfo = new class ApiWaystoneInfo {
       icon: 0,
       color: 0,
       claim: new Set<string>(),
-      favorite: new Set<string>()
+      favorite: new Set<string>(),
+      lock: false
     })
 
     return name
@@ -112,7 +114,7 @@ export const waystoneInfo = new class ApiWaystoneInfo {
 
     waystoneCache.claim(player.id, id)
 
-    apiWarn.notify(player, {translate: "warning.simple_waystone:waystone.claimed_waystone", with: [`${colorDimension[waystone.dimension] ?? ""}${waystone.name}`]}, {sound: "warn.ender_addon_pack:levelup"})
+    apiWarn.notify(player, {translate: "block.warn.simple_waystone:waystone.claimed_waystone", with: [`${colorDimension[waystone.dimension] ?? ""}${waystone.name}`]}, {sound: "warn.ender_addon_pack:levelup"})
     return true
   }
 }
@@ -135,4 +137,5 @@ export interface IWaystoneInfo {
   color: number
   claim: Set<string>
   favorite: Set<string>
+  lock: boolean
 }

@@ -381,6 +381,8 @@ ui.simple_waystone:waystone.info.exit_direction.north=Norte
 ui.simple_waystone:waystone.info.exit_direction.east=Lest
 ui.simple_waystone:waystone.info.exit_direction.south=Sul
 ui.simple_waystone:waystone.info.exit_direction.west=Oeste
+ui.simple_waystone:waystone.info.lock.0=Destrancada
+ui.simple_waystone:waystone.info.lock.1=Trancada
 
 ui.simple_waystone:waystone.transform.title=Transformar Waystone
 ui.simple_waystone:waystone.transform.body=Você quer transformar sua Waystone em uma Warpstone?
@@ -408,34 +410,41 @@ ui.simple_waystone:admin.settings.disable_discount=Desabilitar Melhorias de Desc
 
 ui.simple_waystone:waystone.no=Não
 ui.simple_waystone:waystone.yes=Sim
+## #endregion
 
-warning.simple_waystone:waystone.fail_create_waystone=§cNome Inválido!
-warning.simple_waystone:waystone.create_waystone=Waystone "%1§r" Criada!
-warning.simple_waystone:waystone.not_owner=§cVocê não é o dono dessa Waystone!
-warning.simple_waystone:waystone.claimed_waystone=Waystone "%1§r" adquirida!
-warning.simple_waystone:waystone.corrupted=§cWaystone corrompida!
-warning.simple_waystone:waystone.cancel_settings=§cAlterações desfeitas!
-warning.simple_waystone:waystone.save_settings=§aAlterações salvas!
-warning.simple_waystone:waystone.fail_find_waystones=§cNão foi possivel encontrar nenhuma Waystone!
-warning.simple_waystone:waystone.insufficient_xp=§cVocê não tem XP suficiente!
-warning.simple_waystone:waystone.tp_current_waystone=Você já está nessa Waystone!
-warning.simple_waystone:waystone.dont_deleted_waystones=§cNenhuma Waystone deletada!
-warning.simple_waystone:waystone.deleted_waystones=Waystone %1 deletada!
-warning.simple_waystone:waystone.admin.save_settings=<§aWaystones Simples§r> Jogador §e%1§r mudou as configurações do addon.
+## --------------------------------------------------
+## #region Warning
+## --------------------------------------------------
 
-warning.simple_waystone:waysone.teleport_cooldown=Waystone em Cooldown: %1
+### Blocks
+block.warn.simple_waystone:waystone.fail_create_waystone=§cNome Inválido!
+block.warn.simple_waystone:waystone.create_waystone=Waystone "%1§r" Criada!
+block.warn.simple_waystone:waystone.not_owner=§cVocê não é o dono dessa Waystone!
+block.warn.simple_waystone:waystone.claimed_waystone=Waystone "%1§r" adquirida!
+block.warn.simple_waystone:waystone.corrupted=§cWaystone corrompida!
+block.warn.simple_waystone:waystone.cancel_settings=§cAlterações desfeitas!
+block.warn.simple_waystone:waystone.save_settings=§aAlterações salvas!
+block.warn.simple_waystone:waystone.fail_find_waystones=§cNão foi possivel encontrar nenhuma Waystone!
+block.warn.simple_waystone:waystone.insufficient_xp=§cVocê não tem XP suficiente!
+block.warn.simple_waystone:waystone.tp_current_waystone=Você já está nessa Waystone!
+block.warn.simple_waystone:waystone.dont_deleted_waystones=§cNenhuma Waystone deletada!
+block.warn.simple_waystone:waystone.deleted_waystones=Waystone %1 deletada!
+block.warn.simple_waystone:waystone.admin.save_settings=<§aWaystones Simples§r> Jogador §e%1§r mudou as configurações do addon.
 
-warning.simple_waystone:waysone.disabled=§cO teleporte usando Waystones foi desativado por um Administrador.
+block.warn.simple_waystone:waystone.teleport_cooldown=Waystone em Cooldown: %1
+block.warn.simple_waystone:waystone.disabled=§cO teleporte usando Waystones foi desativado por um Administrador.
+block.warn.simple_waystone:waystone.locked=§cVocê não pode quebrar uma Waystone Travada.
 
-warning.simple_waystone:teleport_item.invalid_teleport_item=§cItem de teleporte inválido!
-warning.simple_waystone:teleport_item.cooldown=Warpstone em Cooldown: %1
+block.warn.simple_waystone:teleporter.not_owner=§cVocê não é o dono dessa Plataforma de Teleporte!
+block.warn.simple_waystone:teleporter.place_shard.same=§cEsse Fragmento de Teleporte pertence a essa Plataforma, não pode colocar aqui.
+block.warn.simple_waystone:teleporter.place_shard.target_no_longer_exist=A localização registrada no Fragmente de Teleporter não existe mais.
 
-warning.simple_waystone:upgrades.xp_cost.removed=§cDescontos de teleporte removidos.
-warning.simple_waystone:upgrades.xp_cost.success=Teleportes usando essa waystone custam %1% menos Xp.
+block.warn.simple_waystone:upgrades.xp_cost.removed=§cDescontos de teleporte removidos.
+block.warn.simple_waystone:upgrades.xp_cost.success=Teleportes usando essa waystone custam %1% menos Xp.
 
-warning.simple_waystone:teleporter.not_owner=§cVocê não é o dono dessa Plataforma de Teleporte!
-warning.simple_waystone:teleporter.place_shard.same=§cEsse Fragmento de Teleporte pertence a essa Plataforma, não pode colocar aqui.
-warning.simple_waystone:teleporter.place_shard.target_no_longer_exist=A localização registrada no Fragmente de Teleporter não existe mais.
+### Items
+item.warn.simple_waystone:teleport_item.invalid_teleport_item=§cItem de teleporte inválido!
+item.warn.simple_waystone:teleport_item.cooldown=Warpstone em Cooldown: %1
 ## #endregion
 
 

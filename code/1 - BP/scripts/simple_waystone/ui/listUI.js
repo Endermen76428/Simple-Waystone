@@ -14,7 +14,7 @@ export function waystoneUIList(player, block, waystone, item, publicList = false
     const waystones = publicList ? waystonesList.getPublicWaystones(player) : waystonesList.getPrivateWaystones(player);
     if (waystones.length < 1) {
         if (publicList)
-            return apiWarn.notify(player, "warning.simple_waystone:waystone.fail_find_waystones", { type: "actionbar", sound: "warn.ender_addon_pack:bass" });
+            return apiWarn.notify(player, "block.warn.simple_waystone:waystone.fail_find_waystones", { type: "actionbar", sound: "warn.ender_addon_pack:bass" });
         return waystoneUIList(player, block, waystone, item, !publicList);
     }
     const buttons = waystones.map(value => {
@@ -42,14 +42,14 @@ export function waystoneUIList(player, block, waystone, item, publicList = false
         const button = buttons[selection - 1];
         const selected = waystones[selection - 1];
         if (!selected || !button || (selected.name == waystone?.name && (selected.pos.x == waystone.pos.x && selected.pos.y == waystone.pos.y && selected.pos.z == waystone.pos.z)))
-            return apiWarn.notify(player, "warning.simple_waystone:waystone.tp_current_waystone", { type: "actionbar" });
+            return apiWarn.notify(player, "block.warn.simple_waystone:waystone.tp_current_waystone", { type: "actionbar" });
         if (player.level < button.cost && player.getGameMode() != GameMode.Creative)
-            return apiWarn.notify(player, "warning.simple_waystone:waystone.insufficient_xp", { sound: "warn.ender_addon_pack:bass" });
+            return apiWarn.notify(player, "block.warn.simple_waystone:waystone.insufficient_xp", { sound: "warn.ender_addon_pack:bass" });
         if (!waystone && item) {
             const execute = apiTeleportItem[item.typeId];
             if (execute)
                 if (execute(player))
-                    return apiWarn.notify(player, "warning.simple_waystone:teleport_item.invalid_teleport_item", { type: "actionbar", sound: "warn.ender_addon_pack:break" });
+                    return apiWarn.notify(player, "item.warn.simple_waystone:teleport_item.invalid_teleport_item", { type: "actionbar", sound: "warn.ender_addon_pack:break" });
         }
         if (!item)
             apiWarn.playSound(player, "block.simple_waystone:waystone.teleport", { delaySound: 1 });
@@ -116,7 +116,7 @@ function hasWaystone(player, pos) {
         }
         if (!block.hasTag("ws:waystone")) {
             waystoneInfo.removeWaystone(pos, player.dimension.id);
-            apiWarn.notify(player, "warning.simple_waystone:waystone.corrupted", { type: "actionbar", sound: "warn.ender_addon_pack:bass" });
+            apiWarn.notify(player, "block.warn.simple_waystone:waystone.corrupted", { type: "actionbar", sound: "warn.ender_addon_pack:bass" });
         }
     }
     catch {

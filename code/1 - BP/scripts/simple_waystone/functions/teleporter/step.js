@@ -19,7 +19,7 @@ export const teleporterPadStep = new class TeleporterPadStep {
         if (teleporterPadCache.getTeleporter(`${dimension.replace("minecraft:", "")}/${pos.x},${pos.y},${pos.z}`) == undefined) {
             teleporterPadInfo.removeShard(block);
             teleporterPadSpace.spawnShard(block);
-            entity instanceof Player && apiWarn.notify(entity, "warning.simple_waystone:teleporter.place_shard.target_no_longer_exist", { sound: "warn.ender_addon_pack:bass" });
+            entity instanceof Player && apiWarn.notify(entity, "block.warn.simple_waystone:teleporter.place_shard.target_no_longer_exist", { sound: "warn.ender_addon_pack:bass" });
             return;
         }
         entity.setDynamicProperty("tp_block", block.location);

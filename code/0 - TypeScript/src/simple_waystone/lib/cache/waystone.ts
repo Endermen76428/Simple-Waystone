@@ -68,6 +68,11 @@ export const waystoneCache = new class WaystoneCache {
     }
   }
 
+  updateLock(lock: boolean, id: string): void {
+    const cache = globalCacheWaystones.get(id)
+    if(cache) cache.lock = lock
+  }
+
   getWaystone(id: string): IWaystoneInfo | undefined { return globalCacheWaystones.get(id) }
 
   getPlayerWaystoneIds(playerId: string): IPlayerCacheStructure { return this.getPlayerCache(playerId) }

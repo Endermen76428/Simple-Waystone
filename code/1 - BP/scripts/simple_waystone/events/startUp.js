@@ -41,7 +41,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry: customB, itemCo
             const waystone = waystonesList.findWaystone(block.dimension.id, block.location);
             if (!waystone) {
                 apiWaystoneSpace.setOff(player, block);
-                return apiWarn.notify(player, "warning.simple_waystone:waystone.corrupted", { type: "actionbar", sound: "warn.ender_addon_pack:bass" });
+                return apiWarn.notify(player, "block.warn.simple_waystone:waystone.corrupted", { type: "actionbar", sound: "warn.ender_addon_pack:bass" });
             }
             const equippable = player.getComponent(EntityComponentTypes.Equippable);
             if (!equippable)
@@ -56,17 +56,17 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry: customB, itemCo
                 if (discountValue != undefined && !AddonConfig.disableDiscount)
                     return apiWaystoneSpace.upgradeXp(player, block, discountValue, item);
             }
-            if (waystone.owner == player.id && equippable.getEquipment(EquipmentSlot.Mainhand)?.typeId == "minecraft:brush")
+            if (waystone.owner == player.id && item == "minecraft:brush")
                 return apiWaystoneSpace.waystoneToWarpstone(player, block);
             if (waystoneInfo.claimedWaystone(player, waystone))
                 return;
             if (player.isSneaking)
                 return waystoneUISettings(player, waystone.owner, block);
             if (!AddonConfig.tpByBlock)
-                return apiWarn.notify(player, "warning.simple_waystone:waysone.disabled", { sound: "warn.ender_addon_pack:bass" });
+                return apiWarn.notify(player, "block.warn.simple_waystone:waystone.disabled", { sound: "warn.ender_addon_pack:bass" });
             const cooldown = apiCooldown.timeUp(player, "waystoneCooldown");
             if (!cooldown.end)
-                return apiWarn.notify(player, { translate: "warning.simple_waystone:waysone.teleport_cooldown", with: [`${cooldown.time}s`] }, { type: "actionbar" });
+                return apiWarn.notify(player, { translate: "block.warn.simple_waystone:waystone.teleport_cooldown", with: [`${cooldown.time}s`] }, { type: "actionbar" });
             waystoneUIList(player, block, waystone, undefined, apiConfig.getConfig(player, "publicFirst"));
         }
     });
@@ -82,10 +82,10 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry: customB, itemCo
             if (player.isSneaking)
                 return waystoneUISettings(player, player.id, block);
             if (!AddonConfig.tpByBlock)
-                return apiWarn.notify(player, "warning.simple_waystone:waysone.disabled", { sound: "warn.ender_addon_pack:bass" });
+                return apiWarn.notify(player, "block.warn.simple_waystone:waystone.disabled", { sound: "warn.ender_addon_pack:bass" });
             const cooldown = apiCooldown.timeUp(player, "waystoneCooldown");
             if (!cooldown.end)
-                return apiWarn.notify(player, { translate: "warning.simple_waystone:waysone.teleport_cooldown", with: [`${cooldown.time}s`] }, { type: "actionbar" });
+                return apiWarn.notify(player, { translate: "block.warn.simple_waystone:waystone.teleport_cooldown", with: [`${cooldown.time}s`] }, { type: "actionbar" });
             waystoneUIList(player, block, undefined, undefined);
         }
     });
@@ -115,7 +115,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry: customB, itemCo
             }
             const cooldown = apiCooldown.timeUp(player, "warpstoneCooldown");
             if (item.typeId == "ws:warpstone" && !cooldown.end)
-                return apiWarn.notify(player, { translate: "warning.simple_waystone:teleport_item.cooldown", with: [`${cooldown.time}s`] }, { type: "actionbar" });
+                return apiWarn.notify(player, { translate: "item.warn.simple_waystone:teleport_item.cooldown", with: [`${cooldown.time}s`] }, { type: "actionbar" });
             waystoneUIList(player, undefined, undefined, item);
         }
     });

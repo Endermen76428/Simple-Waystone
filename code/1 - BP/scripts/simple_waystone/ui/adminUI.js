@@ -16,7 +16,7 @@ export function waystoneUIAdmin(player) {
         .submitButton("ui.simple_waystone:waystone.create.button")
         .show(player).then(({ canceled, formValues }) => {
         if (canceled || formValues == undefined)
-            return apiWarn.notify(player, "warning.simple_waystone:waystone.cancel_settings", { type: "actionbar", sound: "warn.ender_addon_pack:break" });
+            return apiWarn.notify(player, "block.warn.simple_waystone:waystone.cancel_settings", { type: "actionbar", sound: "warn.ender_addon_pack:break" });
         AddonConfig.xpMax = (r => typeof r == "number" ? r : AddonConfig.xpMax)(formValues[0]);
         AddonConfig.xpByDistance = (r => typeof r == "number" ? r : AddonConfig.xpByDistance)(formValues[1]);
         AddonConfig.xpByDimension = (r => typeof r == "number" ? r : AddonConfig.xpByDimension)(formValues[2]);
@@ -34,6 +34,6 @@ export function waystoneUIAdmin(player) {
         world.setDynamicProperty("config:item_cooldown", AddonConfig.itemCooldown);
         world.setDynamicProperty("config:disable_discount", AddonConfig.disableDiscount);
         apiWarn.playSound(player, "warn.ender_addon_pack:levelup");
-        apiWarn.notify(player, { translate: "warning.simple_waystone:waystone.admin.save_settings", with: [player.name] });
+        apiWarn.notify(player, { translate: "block.warn.simple_waystone:waystone.admin.save_settings", with: [player.name] });
     });
 }

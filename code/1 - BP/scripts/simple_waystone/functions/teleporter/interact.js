@@ -13,10 +13,10 @@ export const teleporterPadInteract = new class TeleporterPadInteract {
         if (typeof savedDimension != "string" || typeof savedPos != "object")
             return this.registerShard(block, player, item);
         if (block.dimension.id == savedDimension && block.x == savedPos.x && block.y == savedPos.y && block.z == savedPos.z)
-            return apiWarn.notify(player, "warning.simple_waystone:teleporter.place_shard.same", { sound: "warn.ender_addon_pack:bass" });
+            return apiWarn.notify(player, "block.warn.simple_waystone:teleporter.place_shard.same", { sound: "warn.ender_addon_pack:bass" });
         if (teleporterPadCache.getTeleporter(`${savedDimension.replace("minecraft:", "")}/${savedPos.x},${savedPos.y},${savedPos.z}`) == undefined) {
             apiEquippable.setItem(player, new ItemStack(item.typeId), EquipmentSlot.Mainhand);
-            return apiWarn.notify(player, "warning.simple_waystone:teleporter.place_shard.target_no_longer_exist", { sound: "warn.ender_addon_pack:bass" });
+            return apiWarn.notify(player, "block.warn.simple_waystone:teleporter.place_shard.target_no_longer_exist", { sound: "warn.ender_addon_pack:bass" });
         }
         block.setPermutation(BlockPermutation.resolve("ws:teleporter_pad", {
             "ws:broken": item.typeId.endsWith("_broken"),
@@ -38,7 +38,7 @@ export const teleporterPadInteract = new class TeleporterPadInteract {
         if (!teleporter || teleporter == true)
             return;
         if (player.id != teleporter.owner)
-            return apiWarn.notify(player, "warning.simple_waystone:teleporter.not_owner", { sound: "warn.ender_addon_pack:bass" });
+            return apiWarn.notify(player, "block.warn.simple_waystone:teleporter.not_owner", { sound: "warn.ender_addon_pack:bass" });
         teleporterPadInfo.removeShard(block);
         teleporterPadSpace.spawnShard(block, teleporter.dimension, teleporter.pos);
     }
