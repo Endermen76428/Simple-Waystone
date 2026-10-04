@@ -1,5 +1,5 @@
-import { world, Vector3 } from "@minecraft/server"
 import { globalCacheTeleporterPad } from "./global"
+import { Vector3 } from "@minecraft/server"
 
 export const teleporterPadCache = new class TeleporterPadCache {
   getTeleporter(id: string): TeleporterPadStructure | undefined { return globalCacheTeleporterPad.get(id) }

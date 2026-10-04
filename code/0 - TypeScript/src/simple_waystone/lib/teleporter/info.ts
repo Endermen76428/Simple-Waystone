@@ -27,7 +27,8 @@ export const teleporterPadInfo = new class TeleporterPadInfo {
     apiScoreboard.addScore(score, `0/${playerId}`)
     apiScoreboard.addScore(score, `1/${dimension.replace("minecraft:", "")}`)
     apiScoreboard.addScore(score, `2/${pos.x},${pos.y},${pos.z}`)
-    apiScoreboard.setScore(score, `3/broken`, broken ? 1 : 0)
+    apiScoreboard.setScore(score, "3/broken", broken ? 1 : 0)
+    apiScoreboard.setScore(score, "4/offset", 0)
 
     teleporterPadCache.putShard(id, playerId, dimension, pos, broken)
   }
