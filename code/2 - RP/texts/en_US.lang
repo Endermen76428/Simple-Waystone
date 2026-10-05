@@ -449,6 +449,9 @@ block.warn.simple_waystone:upgrades.xp_cost.success=Teleports using this wayston
 ### Items
 item.warn.simple_waystone:teleport_item.invalid_teleport_item=§cInvalid teleport item!
 item.warn.simple_waystone:teleport_item.cooldown=Warpstone on Cooldown: %1
+
+item.warn.simple_waystone:bound_scroll.corrupted=§cCorrupted Scroll!
+item.warn.simple_waystone:bound_scroll.invalid_waystone=§cThe linked Waystone is no longer valid.
 ## #endregion
 
 

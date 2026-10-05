@@ -125,13 +125,13 @@ function hasWaystone(player, pos) {
         system.runTimeout(() => { hasWaystone(player, pos); }, 5);
     }
 }
-const waystonOffset = {
+export const waystonOffset = {
     "north": ["z", -0.5],
     "south": ["z", 0.5],
     "east": ["x", 0.5],
     "west": ["x", -0.5]
 };
-const waystoneRotate = {
+export const waystoneRotate = {
     "south": 0,
     "west": 90,
     "north": 180,

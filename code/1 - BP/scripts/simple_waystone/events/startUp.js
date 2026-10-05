@@ -13,6 +13,7 @@ import { waystoneUICreate } from "../ui/createUI";
 import { apiCooldown } from "../lib/apiCooldown";
 import { waystoneUIList } from "../ui/listUI";
 import { apiConfig } from "../lib/apiConfig";
+import { boundScroll } from "../functions/boundScroll";
 const replaceBlock = ["minecraft:air", "minecraft:lava", "minecraft:water"];
 system.beforeEvents.startup.subscribe(({ blockComponentRegistry: customB, itemComponentRegistry: customI }) => {
     customB.registerCustomComponent("ws:waystone", {
@@ -129,7 +130,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry: customB, itemCo
                 const durability = newItem.getComponent(ItemComponentTypes.Durability);
                 if (!durability)
                     return;
-                durability.damage = 9;
+                durability.damage = 31;
                 player.getComponent(EntityComponentTypes.Equippable)?.setEquipment(EquipmentSlot.Mainhand, newItem);
                 return;
             }
@@ -142,7 +143,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry: customB, itemCo
     });
     customI.registerCustomComponent("ws:bound_scroll", {
         onUse: ({ source: player, itemStack: item }) => {
-            waystoneUIList(player, undefined, undefined, item);
+            item && boundScroll(player, item);
         },
         onHitEntity: ({ attackingEntity: player, itemStack: item }) => {
             if (item == undefined) {
@@ -150,7 +151,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry: customB, itemCo
                 const durability = newItem.getComponent(ItemComponentTypes.Durability);
                 if (!durability)
                     return;
-                durability.damage = 9;
+                durability.damage = 31;
                 player.getComponent(EntityComponentTypes.Equippable)?.setEquipment(EquipmentSlot.Mainhand, newItem);
                 return;
             }

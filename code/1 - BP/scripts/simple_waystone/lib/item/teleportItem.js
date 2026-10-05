@@ -1,12 +1,12 @@
-import { EntityComponentTypes, EquipmentSlot, GameMode, system } from "@minecraft/server";
+import { EntityComponentTypes, EquipmentSlot, GameMode, ItemComponentTypes, system } from "@minecraft/server";
 import { AddonConfig } from "../../variables";
 import { apiItemAmount } from "./itemAmount";
 import { apiCooldown } from "../apiCooldown";
 export const apiTeleportItem = new class ApiTeleportItem {
     "ws:warpstone"(player, pos) {
-        apiCooldown.set(player, "warpstoneCooldown", AddonConfig.itemCooldown);
         player.dimension.playSound("block.simple_waystone:waystone.teleport", player.location);
         system.run(() => player.dimension.playSound("block.simple_waystone:waystone.teleport", pos));
+        apiCooldown.set(player, "warpstoneCooldown", AddonConfig.itemCooldown);
         return false;
     }
     "ws:golden_feather"(player, pos) {
@@ -23,9 +23,9 @@ export const apiTeleportItem = new class ApiTeleportItem {
         if (player.getGameMode() == GameMode.Creative)
             return false;
         const item = player.getComponent(EntityComponentTypes.Equippable)?.getEquipment(EquipmentSlot.Mainhand);
-        if (!item || item.typeId != "ws:return_scroll")
+        if (!item || (item.typeId != "ws:return_scroll" && item.typeId != "ws:bound_scroll"))
             return true;
-        const comp = item.getComponent("durability");
+        const comp = item.getComponent(ItemComponentTypes.Durability);
         if (!comp)
             return true;
         if (comp.damage + 1 > comp.maxDurability) {

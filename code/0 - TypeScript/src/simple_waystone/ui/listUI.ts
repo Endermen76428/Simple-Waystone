@@ -130,14 +130,14 @@ function hasWaystone(player: Player, pos: Vector3): void {
   }
 }
 
-const waystonOffset: { [key: string]: ["x" | "z", -0.5 | 0.5] } = {
+export const waystonOffset: { [key: string]: ["x" | "z", -0.5 | 0.5] } = {
   "north": ["z", -0.5],
   "south": ["z", 0.5],
   "east": ["x", 0.5],
   "west": ["x", -0.5]
 }
 
-const waystoneRotate: { [key: string]: number } = {
+export const waystoneRotate: { [key: string]: number } = {
   "south": 0,
   "west": 90,
   "north": 180,
