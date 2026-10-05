@@ -1,27 +1,29 @@
-import { EntityComponentTypes, EquipmentSlot, GameMode, Player } from "@minecraft/server"
-import { apiWarn } from "../../../0-lib/player/warn"
+import { EntityComponentTypes, EquipmentSlot, GameMode, Player, system, Vector3 } from "@minecraft/server"
 import { AddonConfig } from "../../variables"
 import { apiItemAmount } from "./itemAmount"
 import { apiCooldown } from "../apiCooldown"
 
 export const apiTeleportItem = new class ApiTeleportItem {
-  [key: string]: (player: Player) => boolean
+  [key: string]: (player: Player, pos: Vector3) => boolean
 
-  "ws:warpstone"(player: Player): false {
+  "ws:warpstone"(player: Player, pos: Vector3): false {
     apiCooldown.set(player, "warpstoneCooldown", AddonConfig.itemCooldown)
-    apiWarn.playSound(player, "block.simple_waystone:waystone.teleport", {delaySound: 1})
+    player.dimension.playSound("block.simple_waystone:waystone.teleport", player.location)
+    system.run(() => player.dimension.playSound("block.simple_waystone:waystone.teleport", pos))
     return false
   }
 
-  "ws:golden_feather"(player: Player): boolean {
-    apiWarn.playSound(player, "item.simple_waystone:golden_feather.used", {delaySound: 1})
+  "ws:golden_feather"(player: Player, pos: Vector3): boolean {
+    player.dimension.playSound("item.simple_waystone:golden_feather.used", player.location)
+    system.run(() => player.dimension.playSound("item.simple_waystone:golden_feather.used", pos))
     if(player.getGameMode() == GameMode.Creative) return false
     const removed = apiItemAmount.decreaseHand(player, "ws:golden_feather")
     return !removed
   }
 
-  "ws:return_scroll"(player: Player): boolean {
-    apiWarn.playSound(player, "item.simple_waystone:return_scroll.used", {delaySound: 1})
+  "ws:return_scroll"(player: Player, pos: Vector3): boolean {
+    player.dimension.playSound("item.simple_waystone:return_scroll.used", player.location)
+    system.run(() => player.dimension.playSound("item.simple_waystone:return_scroll.used", pos))
     if(player.getGameMode() == GameMode.Creative) return false
     const item = player.getComponent(EntityComponentTypes.Equippable)?.getEquipment(EquipmentSlot.Mainhand)
     if(!item || item.typeId != "ws:return_scroll") return true

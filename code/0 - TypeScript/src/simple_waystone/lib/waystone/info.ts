@@ -114,7 +114,8 @@ export const waystoneInfo = new class ApiWaystoneInfo {
 
     waystoneCache.claim(player.id, id)
 
-    apiWarn.notify(player, {translate: "block.warn.simple_waystone:waystone.claimed_waystone", with: [`${colorDimension[waystone.dimension] ?? ""}${waystone.name}`]}, {sound: "warn.ender_addon_pack:levelup"})
+    apiWarn.notify(player, {translate: "block.warn.simple_waystone:waystone.claimed_waystone", with: [`${colorDimension[waystone.dimension] ?? ""}${waystone.name}`]})
+    player.dimension.playSound("block.simple_waystone:waystone.claim", waystone.pos)
     return true
   }
 }

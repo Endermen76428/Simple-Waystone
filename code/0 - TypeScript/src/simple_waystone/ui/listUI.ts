@@ -49,9 +49,12 @@ export function waystoneUIList(player: Player, block?: Block, waystone?: IWaysto
 
     if(!waystone && item){
       const execute = apiTeleportItem[item.typeId]
-      if(execute) if(execute(player)) return apiWarn.notify(player, "item.warn.simple_waystone:teleport_item.invalid_teleport_item", {type: "actionbar", sound: "warn.ender_addon_pack:break"})
+      if(execute) if(execute(player, selected.pos)) return apiWarn.notify(player, "item.warn.simple_waystone:teleport_item.invalid_teleport_item", {type: "actionbar", sound: "warn.ender_addon_pack:break"})
     }
-    if(!item) apiWarn.playSound(player, "block.simple_waystone:waystone.teleport", {delaySound: 1})
+    if(!item){
+      player.dimension.playSound("block.simple_waystone:waystone.teleport", selected.pos)
+      system.run(() => player.dimension.playSound("block.simple_waystone:waystone.teleport", player.location))
+    }
     if(waystone) apiCooldown.set(player, "waystoneCooldown", AddonConfig.tpCooldown)
 
     teleport(player, selected, button.cost)

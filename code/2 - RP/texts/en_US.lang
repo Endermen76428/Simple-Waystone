@@ -331,6 +331,9 @@ subtitles.item.simple_waystone:golden_feather.use=Golden Feather Used
 subtitles.item.simple_waystone:return_scroll.use=Return Scroll Used
 
 ### Blocks
+subtitles.block.simple_waystone:waystone.create=Waystone Registered
+subtitles.block.simple_waystone:waystone.break=Waystone Deactivated
+subtitles.block.simple_waystone:waystone.claim=Waystone Claimed
 subtitles.block.simple_waystone:waystone.teleport=Waystone Teleport
 subtitles.block.simple_waystone:waystone.paint=Waystone Painted
 subtitles.block.simple_waystone:teleporter_pad.shard_break=Shard Broke

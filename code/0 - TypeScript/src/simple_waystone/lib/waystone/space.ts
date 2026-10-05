@@ -1,4 +1,4 @@
-import { Block, BlockPermutation, Dimension, EntityComponentTypes, EquipmentSlot, GameMode, ItemStack, Player, Vector3 } from "@minecraft/server"
+import { Block, BlockPermutation, Dimension, EntityComponentTypes, EquipmentSlot, GameMode, ItemStack, Player, system, Vector3 } from "@minecraft/server"
 import { AddonConfig, upgradeXpDiscount } from "../../variables"
 import { apiScoreboard } from "../../../0-lib/math/scoreboard"
 import { MessageFormData } from "@minecraft/server-ui"
@@ -37,7 +37,7 @@ export const apiWaystoneSpace = new class ApiWaystoneSpace {
     waystoneCache.updateColor(indexColor, id)
     apiScoreboard.setScore(`simple_waystone/w/${id}`, "color", indexColor)
     waystone.setPermutation(waystone.permutation.withState("ws:waystone_color", indexColor))
-    apiWarn.playSound(player, "block.simple_waystone:waystone.paint")
+    player.dimension.playSound("block.simple_waystone:waystone.paint", waystone.bottomCenter())
 
     if(player.getGameMode() == GameMode.Creative) return
     if(item.amount -1 < 1){ player.getComponent(EntityComponentTypes.Equippable)?.setEquipment(EquipmentSlot.Mainhand, undefined); return }
@@ -72,7 +72,7 @@ export const apiWaystoneSpace = new class ApiWaystoneSpace {
     .button2("ui.simple_waystone:waystone.no")
     .show(player).then(({canceled, selection}) => {
       if(canceled || selection == 1 || !waystone.isValid) return
-      apiWarn.playSound(player, "warn.ender_addon_pack:deactive")
+      player.dimension.playSound("warn.ender_addon_pack:deactive", waystone.bottomCenter())
       waystone.dimension.spawnItem(new ItemStack("ws:warpstone"), waystone.center())
 
       waystoneInfo.removeWaystone(waystone.location, waystone.dimension.id.replace("minecraft:", ""))

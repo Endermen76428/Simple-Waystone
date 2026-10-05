@@ -43,7 +43,7 @@ const breakBlockController: { [key: string]: (player: Player, block: Block, hasS
     if(!bottomBlock) return
     system.run(() => {
       waystoneInfo.removeWaystone(bottomBlock.location, bottomBlock.dimension.id)
-      apiWarn.playSound(player, "warn.ender_addon_pack:deactive")
+      player.dimension.playSound("block.simple_waystone:waystone.break", bottomBlock.bottomCenter())
     })
   },
 

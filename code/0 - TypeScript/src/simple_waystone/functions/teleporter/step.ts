@@ -40,9 +40,15 @@ export const teleporterPadStep = new class TeleporterPadStep {
         if(teleporter.broken){
           teleporterPadSpace.setEmptyPad(block)
           teleporterPadInfo.removeShard(block)
-          system.run(() => { block.dimension.playSound("block.simple_waystone:teleporter_pad.shard_break", {x: pos.x +0.5, y: pos.y +0.5, z: pos.z +0.5}) })
+          block.dimension.playSound("block.simple_waystone:teleporter_pad.shard_break", bottomCenter)
+          system.run(() => {
+            block.dimension.playSound("block.simple_waystone:teleporter_pad.shard_break", entity.location)
+          })
         }
-        system.run(() => { block.dimension.playSound("block.simple_waystone:waystone.teleport", {x: pos.x +0.5, y: pos.y +0.5, z: pos.z +0.5}) })
+        block.dimension.playSound("block.simple_waystone:waystone.teleport", bottomCenter)
+        system.run(() => {
+          block.dimension.playSound("block.simple_waystone:waystone.teleport", entity.location)
+        })
 
         entity.addTag("simple_waystone:teleporter")
         entity.teleport({x: pos.x +0.5, y: pos.y +0.5, z: pos.z +0.5}, {dimension: world.getDimension(teleporter.dimension)})

@@ -331,6 +331,9 @@ subtitles.item.simple_waystone:golden_feather.use=Pena Dourada Usada
 subtitles.item.simple_waystone:return_scroll.use=Pergaminho da Volta Usado
 
 ### Blocks
+subtitles.block.simple_waystone:waystone.create=Waystone Registrada
+subtitles.block.simple_waystone:waystone.break=Waystone Desativada
+subtitles.block.simple_waystone:waystone.claim=Waystone Reivindicada
 subtitles.block.simple_waystone:waystone.teleport=Teleporte de Waystone
 subtitles.block.simple_waystone:waystone.paint=Waystone Pintada
 subtitles.block.simple_waystone:teleporter_pad.shard_break=Fragmento Quebra

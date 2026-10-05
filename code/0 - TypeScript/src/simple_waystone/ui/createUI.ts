@@ -21,6 +21,7 @@ export function waystoneUICreate(player: Player, block: Block){
     const created = waystoneInfo.saveWaystone(player, {name, access, pos: block.location})
 
     apiWaystoneSpace.setOn(player, block)
-    apiWarn.notify(player, {translate: "block.warn.simple_waystone:waystone.create_waystone", with: [`${colorDimension[player.dimension.id] ?? ""}${created}`]}, {sound: "warn.ender_addon_pack:enchanting_table"})
+    apiWarn.notify(player, {translate: "block.warn.simple_waystone:waystone.create_waystone", with: [`${colorDimension[player.dimension.id] ?? ""}${created}`]})
+    player.dimension.playSound("block.simple_waystone:waystone.create", block.center())
   })
 }

@@ -19,6 +19,7 @@ export function waystoneUICreate(player, block) {
             return apiWarn.notify(player, "block.warn.simple_waystone:waystone.fail_create_waystone", { type: "actionbar", sound: "warn.ender_addon_pack:break" });
         const created = waystoneInfo.saveWaystone(player, { name, access, pos: block.location });
         apiWaystoneSpace.setOn(player, block);
-        apiWarn.notify(player, { translate: "block.warn.simple_waystone:waystone.create_waystone", with: [`${colorDimension[player.dimension.id] ?? ""}${created}`] }, { sound: "warn.ender_addon_pack:enchanting_table" });
+        apiWarn.notify(player, { translate: "block.warn.simple_waystone:waystone.create_waystone", with: [`${colorDimension[player.dimension.id] ?? ""}${created}`] });
+        player.dimension.playSound("block.simple_waystone:waystone.create", block.center());
     });
 }
