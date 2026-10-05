@@ -310,6 +310,7 @@ item.bedrock_awakening:simple_waystone=§kSimple Waystone
 item.ws:warpstone=Warpstone
 item.ws:golden_feather=Pena Dourada
 item.ws:return_scroll=Pergaminho da Volta
+item.ws:bound_scroll=Pergaminho Vinculado
 item.ws:teleport_shard=Fragmento de Teleporte
 item.ws:teleport_shard_broken=Fragmento de Teleporte Quebrado
 ## #endregion

@@ -121,8 +121,29 @@ system.beforeEvents.startup.subscribe(({blockComponentRegistry: customB, itemCom
     },
 
     onHitEntity: ({attackingEntity: player, itemStack: item}) => {
-      if(!item){
+      if(item == undefined){
         const newItem = new ItemStack("ws:return_scroll")
+        const durability = newItem.getComponent(ItemComponentTypes.Durability)
+        if(!durability) return
+        durability.damage = 9
+        player.getComponent(EntityComponentTypes.Equippable)?.setEquipment(EquipmentSlot.Mainhand, newItem)
+        return
+      }
+      const durability = item.getComponent(ItemComponentTypes.Durability)
+      if(!durability) return
+      durability.damage = durability.damage -2
+      player.getComponent(EntityComponentTypes.Equippable)?.setEquipment(EquipmentSlot.Mainhand, item)
+    }
+  })
+
+  customI.registerCustomComponent("ws:bound_scroll", {
+    onUse: ({source: player, itemStack: item}) => {
+      waystoneUIList(player, undefined, undefined, item)
+    },
+
+    onHitEntity: ({attackingEntity: player, itemStack: item}) => {
+      if(item == undefined){
+        const newItem = new ItemStack("ws:bound_scroll")
         const durability = newItem.getComponent(ItemComponentTypes.Durability)
         if(!durability) return
         durability.damage = 9

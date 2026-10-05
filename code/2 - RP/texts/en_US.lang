@@ -310,6 +310,7 @@ item.bedrock_awakening:simple_waystone=§kSimple Waystone
 item.ws:warpstone=Warpstone
 item.ws:golden_feather=Golden Feather
 item.ws:return_scroll=Return Scroll
+item.ws:bound_scroll=Bound Scroll
 item.ws:teleport_shard=Teleport Shard
 item.ws:teleport_shard_broken=Broken Teleport Shard
 ## #endregion
