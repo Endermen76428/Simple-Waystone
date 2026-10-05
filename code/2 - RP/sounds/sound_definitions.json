@@ -3,22 +3,22 @@
   "sound_definitions": {
     // Golden Feather
     "item.simple_waystone:golden_feather.used": {
-      "category": "music",
+      "category": "block",
       "sounds": [
-        { "name": "sounds/note/icechime", "pitch": 0.95 },
-        { "name": "sounds/note/icechime", "pitch": 1.0 },
-        { "name": "sounds/note/icechime", "pitch": 1.05 }
+        { "name": "sounds/note/icechime", "is3D": false, "pitch": 0.95 },
+        { "name": "sounds/note/icechime", "is3D": false, "pitch": 1.0 },
+        { "name": "sounds/note/icechime", "is3D": false, "pitch": 1.05 }
       ],
       "subtitle": "subtitles.item.simple_waystone:golden_feather.use"
     },
 
     // Return Scroll
     "item.simple_waystone:return_scroll.used": {
-      "category": "music",
+      "category": "block",
       "sounds": [
-        { "name": "sounds/item/book/open_flip1", "volume": 2 },
-        { "name": "sounds/item/book/open_flip2", "volume": 2 },
-        { "name": "sounds/item/book/open_flip3", "volume": 2 }
+        { "name": "sounds/item/book/open_flip1", "is3D": false, "volume": 2 },
+        { "name": "sounds/item/book/open_flip2", "is3D": false, "volume": 2 },
+        { "name": "sounds/item/book/open_flip3", "is3D": false, "volume": 2 }
       ],
       "subtitle": "subtitles.item.simple_waystone:return_scroll.use"
     },
@@ -43,15 +43,15 @@
       "subtitle": "subtitles.block.simple_waystone:waystone.break"
     },
     "block.simple_waystone:waystone.teleport": {
-      "category": "music",
+      "category": "block",
       "sounds": [
-        { "name": "sounds/mob/endermen/portal", "pitch": 0.95 },
-        { "name": "sounds/mob/endermen/portal", "pitch": 1.0 },
-        { "name": "sounds/mob/endermen/portal", "pitch": 1.05 },
+        { "name": "sounds/mob/endermen/portal", "is3D": false, "pitch": 0.95 },
+        { "name": "sounds/mob/endermen/portal", "is3D": false, "pitch": 1.0 },
+        { "name": "sounds/mob/endermen/portal", "is3D": false, "pitch": 1.05 },
 
-        { "name": "sounds/mob/endermen/portal2", "pitch": 0.95 },
-        { "name": "sounds/mob/endermen/portal2", "pitch": 1.0 },
-        { "name": "sounds/mob/endermen/portal2", "pitch": 1.05 }
+        { "name": "sounds/mob/endermen/portal2", "is3D": false, "pitch": 0.95 },
+        { "name": "sounds/mob/endermen/portal2", "is3D": false, "pitch": 1.0 },
+        { "name": "sounds/mob/endermen/portal2", "is3D": false, "pitch": 1.05 }
       ],
       "subtitle": "subtitles.block.simple_waystone:waystone.teleport"
     },
