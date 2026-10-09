@@ -8,7 +8,7 @@
       {
         "weight": 100,
         "element": {
-          "location": "simple_waystone/desert_waystone_structure",
+          "location": "simple_waystone/normal/desert_waystone_structure",
           "element_type": "minecraft:single_pool_element",
           "projection": "rigid"
         }

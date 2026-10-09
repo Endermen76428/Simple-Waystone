@@ -27,8 +27,10 @@ export const teleporterPadStep = new class TeleporterPadStep {
     entity.setDynamicProperty("tp_block", block.location)
 
     const bottomCenter = block.bottomCenter()
-    block.dimension.playSound("block.simple_waystone:teleporter_pad.teleporting", bottomCenter)
-    block.dimension.spawnParticle("simple_waystone:teleporter_pad_ring", bottomCenter)
+    if(teleporterPadTimer.has(id) == false){
+      block.dimension.playSound("block.simple_waystone:teleporter_pad.teleporting", bottomCenter)
+      block.dimension.spawnParticle("simple_waystone:teleporter_pad_ring", bottomCenter)
+    }
     teleporterPadTimer.set(id, system.runTimeout(() => {
       if(!entity.isValid) return
       const lastPos = (r => typeof r == "object" ? r : entity.location)(entity.getDynamicProperty("tp_block"))

@@ -450,6 +450,7 @@ block.warn.simple_waystone:upgrades.xp_cost.success=Teleportes usando essa wayst
 item.warn.simple_waystone:teleport_item.invalid_teleport_item=§cItem de teleporte inválido!
 item.warn.simple_waystone:teleport_item.cooldown=Warpstone em Cooldown: %1
 
+item.warn.simple_waystone:bound_scroll.registered=Pergaminho vinculado à waystone: %1
 item.warn.simple_waystone:bound_scroll.corrupted=§cPergaminho Corrompido!
 item.warn.simple_waystone:bound_scroll.invalid_waystone=§cA Waystone vinculada não é mais válida.
 ## #endregion

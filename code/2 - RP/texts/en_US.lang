@@ -299,6 +299,9 @@ tile.ws:warpstone_pedestal.name=Warpstone Pedestal
 
 tile.ws:teleporter_pad.name=Teleporter Pad
 tile.ws:teleporter_pad_empty.name=Teleporter Pad Empty
+
+### Loaders
+tile.ws:nether_waystone_loader.name=§c
 ## #endregion
 
 ## --------------------------------------------------
@@ -450,6 +453,7 @@ block.warn.simple_waystone:upgrades.xp_cost.success=Teleports using this wayston
 item.warn.simple_waystone:teleport_item.invalid_teleport_item=§cInvalid teleport item!
 item.warn.simple_waystone:teleport_item.cooldown=Warpstone on Cooldown: %1
 
+item.warn.simple_waystone:bound_scroll.registered=Scroll linked to waystone: %1
 item.warn.simple_waystone:bound_scroll.corrupted=§cCorrupted Scroll!
 item.warn.simple_waystone:bound_scroll.invalid_waystone=§cThe linked Waystone is no longer valid.
 ## #endregion

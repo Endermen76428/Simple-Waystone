@@ -1,4 +1,6 @@
 import { EntityComponentTypes, EquipmentSlot, GameMode, ItemComponentTypes, ItemStack, system } from "@minecraft/server"
+import { boundScrollRegister, boundScrollTeleport } from "../functions/boundScroll"
+import { structureLoaderManager } from "../functions/structures/waystone"
 import { teleporterPadInteract } from "../functions/teleporter/interact"
 import { warpstonePedestalInfo } from "../lib/warpstonePedestal/info"
 import { apiWaystoneSpace, dyesList } from "../lib/waystone/space"
@@ -13,7 +15,6 @@ import { waystoneUICreate } from "../ui/createUI"
 import { apiCooldown } from "../lib/apiCooldown"
 import { waystoneUIList } from "../ui/listUI"
 import { apiConfig } from "../lib/apiConfig"
-import { boundScroll } from "../functions/boundScroll"
 
 const replaceBlock = ["minecraft:air", "minecraft:lava", "minecraft:water"]
 
@@ -46,16 +47,18 @@ system.beforeEvents.startup.subscribe(({blockComponentRegistry: customB, itemCom
 
       const equippable = player.getComponent(EntityComponentTypes.Equippable)
       if(!equippable) return
-      const item = equippable.getEquipment(EquipmentSlot.Mainhand)?.typeId
-      if(player.id == waystone.owner && item){
-        if(dyes.has(item)) return apiWaystoneSpace.paintWaystone(player, block)
-        if(item == "minecraft:brush") return apiWaystoneSpace.waystoneToWarpstone(player, block)
+      const itemStack = equippable.getEquipment(EquipmentSlot.Mainhand)
+      if(itemStack != undefined){
+        const itemId = itemStack.typeId
+        if(itemId == "ws:return_scroll" || itemId == "ws:bound_scroll") return boundScrollRegister(player, itemStack, block)
+        if(player.id == waystone.owner){
+          if(dyes.has(itemId)) return apiWaystoneSpace.paintWaystone(player, block)
+          if(itemId == "minecraft:brush") return apiWaystoneSpace.waystoneToWarpstone(player, block)
 
-        const discountValue = upgradeXpDiscountItem[item]
-        if(discountValue != undefined && !AddonConfig.disableDiscount) return apiWaystoneSpace.upgradeXp(player, block, discountValue, item)
+          const discountValue = upgradeXpDiscountItem[itemId]
+          if(discountValue != undefined && !AddonConfig.disableDiscount) return apiWaystoneSpace.upgradeXp(player, block, discountValue, itemId)
+        }
       }
-
-      if(waystone.owner == player.id && item == "minecraft:brush") return apiWaystoneSpace.waystoneToWarpstone(player, block)
 
       if(waystoneInfo.claimedWaystone(player, waystone)) return
       if(player.isSneaking) return waystoneUISettings(player, waystone.owner, block)
@@ -103,6 +106,10 @@ system.beforeEvents.startup.subscribe(({blockComponentRegistry: customB, itemCom
     onPlayerInteract: ({block, player}) => { if(player) teleporterPadInteract.place(block, player) }
   })
 
+  customB.registerCustomComponent("ws:structure_loader", {
+    onTick: ({block}) => { structureLoaderManager(block) }
+  })
+
   customI.registerCustomComponent("ws:warpstone", {
     onUse: ({source: player, itemStack: item}) => {
       if(!item) return
@@ -139,7 +146,7 @@ system.beforeEvents.startup.subscribe(({blockComponentRegistry: customB, itemCom
 
   customI.registerCustomComponent("ws:bound_scroll", {
     onUse: ({source: player, itemStack: item}) => {
-      item && boundScroll(player, item)
+      item && boundScrollTeleport(player, item)
     },
 
     onHitEntity: ({attackingEntity: player, itemStack: item}) => {

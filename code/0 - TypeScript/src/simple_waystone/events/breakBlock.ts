@@ -8,6 +8,7 @@ import { waystoneInfo } from "../lib/waystone/info"
 import { apiWarn } from "../../0-lib/player/warn"
 
 world.beforeEvents.playerBreakBlock.subscribe(ev => {
+  // system.run(() => { world.structureManager.placeJigsawStructure("simple_waystone:nether_waystone_structure", ev.dimension, ev.block.location) })
   const hasSilk = ev.itemStack?.getComponent(ItemComponentTypes.Enchantable)?.hasEnchantment("minecraft:silk_touch") ?? false
 
   if(ev.block.hasTag("ws:waystone")) return breakBlockController["ws:waystone"]?.(ev.player, ev.block, hasSilk, ev)
