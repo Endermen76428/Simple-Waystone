@@ -25,8 +25,12 @@ const breakBlockController: { [key: string]: (player: Player, block: Block, hasS
     const bottom = block.permutation.getState("ws:waystone") == 1 ? block : block.below(1)
     if(bottom == undefined) return
 
+    const drop = block.getItemStack()
     const info = waystoneCache.getWaystone(`${bottom.dimension.id.replace("minecraft:", "")}/${bottom.x},${bottom.y},${bottom.z}`)
-    if(info == undefined) return
+    if(info == undefined){
+      system.run(() => { if(drop && player.getGameMode() != GameMode.Creative) block.dimension.spawnItem(drop, {x: block.x +0.5, y: block.y +0.5, z: block.z +0.5}) })
+      return
+    }
     if(info.lock == true && player.id != info.owner){
       event.cancel = true
       system.run(() => {
@@ -35,7 +39,6 @@ const breakBlockController: { [key: string]: (player: Player, block: Block, hasS
       return
     }
 
-    const drop = block.getItemStack()
     system.run(() => { if(drop && !hasSilk && player.getGameMode() != GameMode.Creative) block.dimension.spawnItem(drop, {x: block.x +0.5, y: block.y +0.5, z: block.z +0.5}) })
 
     if(block.permutation.getState("ws:waystone_on") == false) return

@@ -3,12 +3,7 @@ import { Block, world } from "@minecraft/server"
 
 const maxDepth = 5
 
-export function structureLoaderManager(block: Block): void {
-  const exe = structureLoaders[block.typeId]
-  if(exe != undefined) exe(block)
-}
-
-function netherWaystones(block: Block): void {
+export function generateNetherWaystone(block: Block): void {
   const waystoneId = structureIds[block.typeId]
   if(waystoneId == undefined) return console.error("Structure ID not found for block type:", block.typeId)
   block.setType("minecraft:bedrock")
@@ -66,14 +61,10 @@ function netherWaystones(block: Block): void {
   world.structureManager.place(`mystructure:simple_waystone/${type}/placeholder/${waystoneId}`, block.dimension, {x: block.x -3, y: floor, z: block.z -3}, {integrity: Math.min(random, 0.25), integritySeed: seed})
 }
 
-const structureLoaders: { [key: string]: (block: Block) => void } = {
-  "ws:nether_waystone_loader": (block) => netherWaystones(block),
-  "ws:basalt_waystone_loader": (block) => netherWaystones(block)
-}
-
 const structureIds: { [key: string]: string } = {
   "ws:nether_waystone_loader": "nether_waystone_structure",
-  "ws:basalt_waystone_loader": "basalt_waystone_structure"
+  "ws:basalt_waystone_loader": "basalt_waystone_structure",
+  "ws:crimson_waystone_loader": "crimson_waystone_structure"
 }
 
 const allowedNetherBlocksList = [

@@ -1,6 +1,6 @@
 import { EntityComponentTypes, EquipmentSlot, GameMode, ItemComponentTypes, ItemStack, system } from "@minecraft/server"
 import { boundScrollRegister, boundScrollTeleport } from "../functions/boundScroll"
-import { structureLoaderManager } from "../functions/structures/waystone"
+import { structureLoaderManager } from "../functions/structures/manager"
 import { teleporterPadInteract } from "../functions/teleporter/interact"
 import { warpstonePedestalInfo } from "../lib/warpstonePedestal/info"
 import { apiWaystoneSpace, dyesList } from "../lib/waystone/space"

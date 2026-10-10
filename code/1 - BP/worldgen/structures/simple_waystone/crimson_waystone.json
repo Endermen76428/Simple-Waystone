@@ -1,0 +1,26 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:jigsaw": {
+    "description": {
+      "identifier": "simple_waystone:crimson_waystone"
+    },
+    "biome_filters": [
+      {
+        "all_of": [
+          { "test": "has_biome_tag", "operator": "==", "value": "nether" },
+          { "test": "has_biome_tag", "operator": "==", "value": "crimson_forest" }
+        ]
+      }
+    ],
+    "start_pool": "simple_waystone:simple_waystone/crimson_waystone",
+    "heightmap_projection": "none",
+    "step": "surface_structures",
+    "terrain_adaptation": "beard_thin",
+    "start_height": {
+      "type": "uniform",
+      "min": { "absolute": 1 },
+      "max": { "absolute": 1 }
+    },
+    "max_depth": 1
+  }
+}

@@ -8,7 +8,8 @@
       {
         "all_of": [
           { "test": "has_biome_tag", "operator": "==", "value": "nether" },
-          { "test": "has_biome_tag", "operator": "!=", "value": "basalt_deltas" }
+          { "test": "has_biome_tag", "operator": "!=", "value": "basalt_deltas" },
+          { "test": "has_biome_tag", "operator": "!=", "value": "crimson_forest" }
         ]
       }
     ],
