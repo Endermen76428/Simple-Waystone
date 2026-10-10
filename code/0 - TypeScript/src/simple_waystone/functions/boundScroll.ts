@@ -14,7 +14,10 @@ export function boundScrollTeleport(player: Player, item: ItemStack): void {
 
   const cache = waystoneCache.getWaystone(`${dim}/${pos.x},${pos.y},${pos.z}`)
   if(cache == undefined){
-    // Fazer ele trasnformar em um pergaminho normal, já que não existe mais a waystone
+    const damage = item.getComponent(ItemComponentTypes.Durability)?.damage ?? 0
+    const scroll = new ItemStack("ws:return_scroll")
+    scroll.getComponent(ItemComponentTypes.Durability)!.damage = damage
+    apiEquippable.setItem(player, scroll, EquipmentSlot.Mainhand)
     return apiWarn.notify(player, "item.warn.simple_waystone:bound_scroll.invalid_waystone", {type: "actionbar", sound: "warn.ender_addon_pack:break"})
   }
 
