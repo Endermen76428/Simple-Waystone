@@ -30,7 +30,7 @@ const breakBlockController = {
                 block.dimension.spawnItem(drop, { x: block.x + 0.5, y: block.y + 0.5, z: block.z + 0.5 }); });
             return;
         }
-        if (info.lock == true && player.id != info.owner) {
+        if (info.lock == true && player.id != info.owner && !player.hasTag("admin")) {
             event.cancel = true;
             system.run(() => {
                 apiWarn.notify(player, "block.warn.simple_waystone:waystone.locked", { type: "actionbar", sound: "warn.ender_addon_pack:break" });
