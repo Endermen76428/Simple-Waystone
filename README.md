@@ -1,21 +1,21 @@
 # Simple Waystone
 
 # Craft
-## <Waystone>
+## Waystone
 
 To create a Waystone you first need to create a Warpstone. And With it and any material you can create your Waystone:
 
 ![Warpstone](doc/1.0%20-%20Recipe%20Warpstone.png)
 ![Waystone](doc/1.1%20-%20Recipe%20Waystone%20Default.png)
 
-## <Warpstone Pedestal>
+## Warpstone Pedestal
 
 To create the Warpstone Pedestal you need 3 Obsidian, 3 Polished Andesite and 1 Warpstone.
 With this block you can teleport like a normal Waystone;
 
 ![Warpstone Pedestal](doc/1.2%20-%20Recipe%20Warpstone%20Pedestal.png)
 
-## <Teleporter Pad>
+## Teleporter Pad
 
 To create the Teleporter Pad you need a Broken Teleporter Shard and a normal Teleporter Shard.
 With this when you step on this block you can teleport to destination registered at the Teleport Shard.
@@ -64,19 +64,21 @@ Perfect to place at your secret room, where you can leave but no enter.
 
 Have 3 Items to teleport without a waystone:
 
-- Warpstone: You use it to create a waystone but also has a function, it makes it easier to not need to interact with a waystone to teleport. (60s cooldown after use)
+- **Warpstone:** You use it to create a waystone but also has a function, it makes it easier to not need to interact with a waystone to teleport. (60s cooldown after use)
 
 ![Warpstone](doc/1.0%20-%20Recipe%20Warpstone.png)
 
-- Golden Feather: Similar to Warpstone but consumed on used.
+- **Golden Feather:** Similar to Warpstone but consumed on used.
 
 ![Golden Feather](doc/1.4%20-%20Recipe%20Golden%20Feather.png)
 
-- Return Scroll: Similar to Warpstone but consumes durability on used.
+- **Return Scroll:** Similar to Warpstone but consumes durability on used.
 
 ![Return Scroll](doc/1.5%20-%20Recipe%20Return%20Scroll.png)
 
-Each teleport item play a diferent sound when teleport.
+- **Bound Scroll:** A Return Scroll linked to a specific waystone (Interact in a waystone with a Return Scroll).
+
+![Bound Scroll](doc/1.6%20-%20Bound%20Scroll.gif)
 
 # Teleporter Pad:
 
@@ -99,11 +101,11 @@ By clicking on the Waystone while hold the shift you access the Settings Screen:
 
 There are some buttons:
 
-- **"Waystone Info"**: Informations about this Waystone that you are using;
-- **"Player Settings"**: Where you can change your informations;
-- **"Remove Waystone"**: To remove some Corrupted Waystone or any other that you created before;
-- **"Favorite Waystones"**: Select some Waystone to be displayed at the top of the Waystones List;
-- **"Administrator"**: Change essentials functions of the Addon (Need "admin" tag).
+- **Waystone Info:** Informations about this Waystone that you are using;
+- **Player Settings:** Where you can change your informations;
+- **Remove Waystone:** To remove some Corrupted Waystone or any other that you created before;
+- **Favorite Waystones:** Select some Waystone to be displayed at the top of the Waystones List;
+- **Administrator:** Change essentials functions of the Addon (Need "admin" tag).
 
 ![General Settings](doc/7.0%20-%20Waystone%20General%20Settings.png)
 
@@ -128,9 +130,9 @@ Discount level is represented by Ore Blocks, to set a upgrade discount you only 
 
 Here we have some configuration like:
 
-- **"A-z / Z-a":** Alphabetical order of the Waystones list;
-- **"Order of Dimension":** Which dimension will appear first in the list;
-- **"Show Dimension":** Which dimension will appear exclusively in the list.
+- **A-z / Z-a:** Alphabetical order of the Waystones list;
+- **Order of Dimension:** Which dimension will appear first in the list;
+- **Show Dimension:** Which dimension will appear exclusively in the list.
 
 ![Player Settings](doc/7.1%20-%20Player%20Settings.png)
 
@@ -174,7 +176,7 @@ Run the command **"/tag @s add waystone_placer"**, after this use a netherite sw
 
 ![Waystone Placer](doc/3.0%20-%20Waystone%20Placer.gif)
 
-- Structures:
+# Structures:
 
 Structures with a waystone can now appear in the overworld.
 
@@ -187,7 +189,8 @@ Structures with a waystone can now appear in the overworld.
 ![Crimson Waystone](doc/9.6%20-%20Structure%20Crimson.png)
 ![House Teleporter Pad](doc/9.7%20-%20Structure%20House%20Teleporter%20Pad.png)
 
-**- Other Infos:**
-This addon don't disable Achievements;
-This addon don't use player.json;
-This addon is compatible with other addons.
+# Other Infos:
+
+- This addon don't disable Achievements;
+- This addon don't use player.json;
+- This addon is compatible with other addons.
