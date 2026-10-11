@@ -184,6 +184,8 @@ Structures with a waystone can now appear in the overworld.
 ![Ocean Waystone](doc/9.3%20-%20Structure%20Ocean.png)
 ![Nether Waystone](doc/9.4%20-%20Structure%20Nether.png)
 ![Basalt Deltas Waystone](doc/9.5%20-%20Structure%20Basalt%20Deltas.png)
+![Crimson Waystone](doc/9.6%20-%20Structure%20Crimson.png)
+![House Teleporter Pad](doc/9.7%20-%20Structure%20House%20Teleporter%20Pad.png)
 
 **- Other Infos:**
 This addon don't disable Achievements;
