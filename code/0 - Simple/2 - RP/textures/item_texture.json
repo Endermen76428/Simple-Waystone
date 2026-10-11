@@ -2,7 +2,7 @@
   "resource_pack_name": "Simple Waystone Lite",
   "texture_name": "atlas.items",
   "texture_data": {
-    "simple_waystone:null": { "textures": "textures/null" },
+    "ender_addon_pack:null": { "textures": "textures/null" },
 
     "simple_waystone:golden_feather": { "textures": "textures/simple_waystone/items/golden_feather" },
     "simple_waystone:return_scroll": { "textures": "textures/simple_waystone/items/return_scroll" },
