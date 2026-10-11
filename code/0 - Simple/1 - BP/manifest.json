@@ -1,24 +1,24 @@
 {
   "format_version": 2,
   "header": {
-    "name": "Simple Waystone v9.0 (Addon / Lite)",
+    "name": "Simple Waystone v9.1 (Addon / Lite)",
     "description": "pack.description",
     "uuid": "e05afa0d-aa45-46bd-82d0-243c605d9737",
     "min_engine_version": [1, 26, 10],
-    "version": [9, 0, 1]
+    "version": [9, 1, 1]
   },
   "modules": [
     {
       "type": "data",
       "uuid": "15aea1a7-7997-40ad-932d-2b99447005b8",
-      "version": [9, 0, 1]
+      "version": [9, 1, 1]
     },
     {
       "type": "script",
       "language": "javascript",
       "entry": "scripts/simple_waystone/main.js",
       "uuid": "119674e9-4eec-4664-b102-55ce891c3c0e",
-      "version": [9, 0, 1]
+      "version": [9, 1, 1]
     }
   ],
   "metadata": {
@@ -29,7 +29,7 @@
   "dependencies": [
     {
       "uuid": "4d6ce949-1de7-41ec-87ab-3068434459a4",
-      "version": [9, 0, 1]
+      "version": [9, 1, 1]
     },
     {
       "module_name": "@minecraft/server",
