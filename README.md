@@ -58,7 +58,7 @@ After creating your waystone, click on it again to access a screen with all your
 It works the same way as any other waystone, but you can't create a point where you place the pedestal you only can teleport to other waystones already created.
 Perfect to place at your secret room, where you can leave but no enter.
 
-![Warpstone Pedestal](doc/1.2%20-%20Warpstone%20Pedestal.png)
+![Warpstone Pedestal v9.0](doc/1.2%20-%20Warpstone%20Pedestal.png)
 
 # Teleport Items:
 
