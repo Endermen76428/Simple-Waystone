@@ -110,9 +110,12 @@ There are some buttons:
 ![General Settings](doc/7.0%20-%20Waystone%20General%20Settings.png)
 
 ## Waystone Info:
+
 Here you can know some informations about this waystone, like:
-The current discount level for teleports from this waystone (Click to remove upgrade);
-Which direction who teleport to this waystone will appear.
+
+- **Xp Discount:** The current discount level for teleports from this waystone (Click to remove upgrade);
+- **Exit Direction:** Which direction who teleport to this waystone will appear;
+- **Locked:** It doesn't allow other people to break that waystone.
 
 ![Waystone info](doc/7.0.0%20-%20Waystone%20Info.gif)
 
@@ -131,6 +134,7 @@ Discount level is represented by Ore Blocks, to set a upgrade discount you only 
 Here we have some configuration like:
 
 - **A-z / Z-a:** Alphabetical order of the Waystones list;
+- **First Public Waystone:** Show the public waystones first when open the waystone list;
 - **Order of Dimension:** Which dimension will appear first in the list;
 - **Show Dimension:** Which dimension will appear exclusively in the list.
 
