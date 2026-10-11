@@ -2,8 +2,8 @@ import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
 import { colorDimension, waystoneListIconPath } from "./listUI";
 import { waystonesList } from "../lib/waystone/list";
 import { waystoneInfo } from "../lib/waystone/info";
+import { apiWarn } from "../../0-lib/player/warn";
 import { apiOrganize } from "../lib/apiOrganize";
-import { apiWarn } from "../lib/player/warn";
 export function waystoneUIRemove(player) {
     const allWaystones = apiOrganize.organizeDimension(player, waystonesList.getPlayerWaystones(player.id));
     if (allWaystones.length < 1)
@@ -25,9 +25,9 @@ export function waystoneUIRemove(player) {
             .button2("ui.simple_waystone:waystone.yes")
             .show(player).then(r => {
             if (r.canceled || r.selection == 0)
-                return apiWarn.notify(player, "warning.simple_waystone:waystone.dont_deleted_waystones", { type: "actionbar", sound: "warn.ender_addon_pack:break" });
+                return apiWarn.notify(player, "block.warn.simple_waystone:waystone.dont_deleted_waystones", { type: "actionbar", sound: "warn.ender_addon_pack:break" });
             waystoneInfo.removeWaystone(selected.pos, selected.dimension);
-            apiWarn.notify(player, { translate: "warning.simple_waystone:waystone.deleted_waystones", with: [`${colorDimension[selected.dimension] ?? ""}${selected.name}§r`] }, { sound: "warn.ender_addon_pack:deactive" });
+            apiWarn.notify(player, { translate: "block.warn.simple_waystone:waystone.deleted_waystones", with: [`${colorDimension[selected.dimension] ?? ""}${selected.name}§r`] }, { sound: "warn.ender_addon_pack:deactive" });
         });
     });
 }

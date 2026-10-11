@@ -1,8 +1,8 @@
 import { apiWaystoneSpace } from "../lib/waystone/space";
-import { waystoneInfo } from "../lib/waystone/info";
 import { ModalFormData } from "@minecraft/server-ui";
+import { waystoneInfo } from "../lib/waystone/info";
+import { apiWarn } from "../../0-lib/player/warn";
 import { colorDimension } from "./listUI";
-import { apiWarn } from "../lib/player/warn";
 export function waystoneUICreate(player, block) {
     new ModalFormData()
         .title(`ui.simple_waystone:waystone.create.title`)
@@ -14,11 +14,12 @@ export function waystoneUICreate(player, block) {
             return;
         const [name, access] = r.formValues;
         if (typeof name != "string" || typeof access != "boolean")
-            return apiWarn.notify(player, "warning.simple_waystone:waystone.fail_create_waystone", { type: "actionbar", sound: "warn.ender_addon_pack:break" });
+            return apiWarn.notify(player, "block.warn.simple_waystone:waystone.fail_create_waystone", { type: "actionbar", sound: "warn.ender_addon_pack:break" });
         if (!name || name.replaceAll(/§./g, "").replaceAll("§", "").length < 1)
-            return apiWarn.notify(player, "warning.simple_waystone:waystone.fail_create_waystone", { type: "actionbar", sound: "warn.ender_addon_pack:break" });
+            return apiWarn.notify(player, "block.warn.simple_waystone:waystone.fail_create_waystone", { type: "actionbar", sound: "warn.ender_addon_pack:break" });
         const created = waystoneInfo.saveWaystone(player, { name, access, pos: block.location });
         apiWaystoneSpace.setOn(player, block);
-        apiWarn.notify(player, { translate: "warning.simple_waystone:waystone.create_waystone", with: [`${colorDimension[player.dimension.id] ?? ""}${created}`] }, { sound: "warn.ender_addon_pack:enchanting_table" });
+        apiWarn.notify(player, { translate: "block.warn.simple_waystone:waystone.create_waystone", with: [`${colorDimension[player.dimension.id] ?? ""}${created}`] });
+        player.dimension.playSound("block.simple_waystone:waystone.create", block.center());
     });
 }

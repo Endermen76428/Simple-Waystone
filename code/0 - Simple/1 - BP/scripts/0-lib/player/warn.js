@@ -1,10 +1,10 @@
-import { world, system } from "@minecraft/server";
+import { system, world } from "@minecraft/server";
 export const apiWarn = new class ApiWarn {
     notify(player, message, options) {
         const type = options && options.type ? options.type : "chat";
         const execute = notifyTypes[type];
         if (execute && message)
-            execute(player, message);
+            execute(player, message, options?.subtitle);
         system.runTimeout(() => {
             if (options?.sound)
                 player.playSound(options.sound, { volume: options.volume });
@@ -25,8 +25,8 @@ export const apiWarn = new class ApiWarn {
         }, options?.delaySound);
     }
 };
-const notifyTypes = new class notifyTypes {
-    "chat"(player, message) { player.sendMessage(typeof message == "string" ? { translate: message } : message); }
-    "actionbar"(player, message) { player.onScreenDisplay.setActionBar(typeof message == "string" ? { translate: message } : message); }
-    "title"(player, message) { player.onScreenDisplay.setTitle(typeof message == "string" ? { translate: message } : message); }
+const notifyTypes = {
+    "chat"(player, message) { player.sendMessage(typeof message == "string" ? { translate: message } : message); },
+    "actionbar"(player, message) { player.onScreenDisplay.setActionBar(typeof message == "string" ? { translate: message } : message); },
+    "title"(player, message, subtitle) { player.onScreenDisplay.setTitle(typeof message == "string" ? { translate: message } : message, subtitle); }
 };

@@ -1,24 +1,34 @@
-import { world, ItemStack } from "@minecraft/server";
+import { ItemStack, world } from "@minecraft/server";
+import { apiScoreboard } from "../../../0-lib/math/scoreboard";
+import { apiNumbers } from "../../../0-lib/math/numbers";
+import { apiWarn } from "../../../0-lib/player/warn";
 import { upgradeXpDiscount } from "../../variables";
-import { apiScoreboard } from "../math/scoreboard";
 import { waystoneCache } from "../cache/waystone";
 import { colorDimension } from "../../ui/listUI";
+import { exitDirection } from "../../ui/infoUI";
 import { apiOrganize } from "../apiOrganize";
 import { waystonesList } from "./list";
-import { apiWarn } from "../player/warn";
+const turnDegress = 180 / Math.PI;
+const inveseSplit = 1 / 90;
 export const waystoneInfo = new class ApiWaystoneInfo {
     saveWaystone(player, info) {
         const name = apiOrganize.sameNames(info.name, waystonesList.getPlayerWaystones(player.id).map(value => value.name));
         const access = info.access ? 1 : 0;
         const id = player.dimension.id.replace("minecraft:", "") + `/${info.pos.x},${info.pos.y},${info.pos.z}`;
+        const disX = player.location.x - (info.pos.x + 0.5);
+        const disZ = player.location.z - (info.pos.z + 0.5);
+        const degress = Math.atan2(-disX, disZ) * turnDegress + 225;
+        const offsetIndex = apiNumbers.wrapRange(Math.floor(degress * inveseSplit) + 1, 1, 4);
+        const offset = exitDirection[offsetIndex] ?? "auto";
         const waystoneScore = apiScoreboard.getObj(`simple_waystone/w/${id}`);
         waystoneScore.setScore(`0/${player.id}`, 0);
         waystoneScore.setScore(`1/${name}`, 0);
-        waystoneScore.setScore(`access`, access);
-        waystoneScore.setScore(`icon`, 0);
-        waystoneScore.setScore(`color`, 0);
-        waystoneScore.setScore(`xp_discount`, 100);
-        waystoneScore.setScore(`offset`, 0);
+        waystoneScore.setScore("access", access);
+        waystoneScore.setScore("icon", 0);
+        waystoneScore.setScore("color", 0);
+        waystoneScore.setScore("xp_discount", 100);
+        waystoneScore.setScore("offset", offsetIndex);
+        waystoneScore.setScore("lock", 0);
         apiScoreboard.getObj(`simple_waystone/p/${player.id}`).setScore(`${access}/${id}`, 0);
         waystoneCache.create({
             access,
@@ -26,12 +36,13 @@ export const waystoneInfo = new class ApiWaystoneInfo {
             name: info.name,
             pos: info.pos,
             dimension: player.dimension.id,
-            offset: "auto",
+            offset,
             xpDiscount: 1,
             icon: 0,
             color: 0,
             claim: new Set(),
-            favorite: new Set()
+            favorite: new Set(),
+            lock: false
         });
         return name;
     }
@@ -89,7 +100,8 @@ export const waystoneInfo = new class ApiWaystoneInfo {
         const waystoneScore = apiScoreboard.getObj(`simple_waystone/w/${id}`);
         waystoneScore.setScore(`2/${player.id}`, 0);
         waystoneCache.claim(player.id, id);
-        apiWarn.notify(player, { translate: "warning.simple_waystone:waystone.claimed_waystone", with: [`${colorDimension[waystone.dimension] ?? ""}${waystone.name}`] }, { sound: "warn.ender_addon_pack:levelup" });
+        apiWarn.notify(player, { translate: "block.warn.simple_waystone:waystone.claimed_waystone", with: [`${colorDimension[waystone.dimension] ?? ""}${waystone.name}`] });
+        player.dimension.playSound("block.simple_waystone:waystone.claim", waystone.pos);
         return true;
     }
 };

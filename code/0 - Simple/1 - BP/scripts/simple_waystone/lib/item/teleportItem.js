@@ -1,29 +1,31 @@
-import { EquipmentSlot, EntityComponentTypes, GameMode } from "@minecraft/server";
+import { EntityComponentTypes, EquipmentSlot, GameMode, ItemComponentTypes, system } from "@minecraft/server";
 import { AddonConfig } from "../../variables";
 import { apiItemAmount } from "./itemAmount";
 import { apiCooldown } from "../apiCooldown";
-import { apiWarn } from "../player/warn";
 export const apiTeleportItem = new class ApiTeleportItem {
-    "ws:warpstone"(player) {
+    "ws:warpstone"(player, pos) {
+        player.dimension.playSound("block.simple_waystone:waystone.teleport", player.location);
+        system.run(() => player.dimension.playSound("block.simple_waystone:waystone.teleport", pos));
         apiCooldown.set(player, "warpstoneCooldown", AddonConfig.itemCooldown);
-        apiWarn.playSound(player, "block.simple_waystone:waystone.teleport", { delaySound: 1 });
         return false;
     }
-    "ws:golden_feather"(player) {
-        apiWarn.playSound(player, "item.simple_waystone:golden_feather.used", { delaySound: 1 });
+    "ws:golden_feather"(player, pos) {
+        player.dimension.playSound("item.simple_waystone:golden_feather.used", player.location);
+        system.run(() => player.dimension.playSound("item.simple_waystone:golden_feather.used", pos));
         if (player.getGameMode() == GameMode.Creative)
             return false;
         const removed = apiItemAmount.decreaseHand(player, "ws:golden_feather");
         return !removed;
     }
-    "ws:return_scroll"(player) {
-        apiWarn.playSound(player, "item.simple_waystone:return_scroll.used", { delaySound: 1 });
+    "ws:return_scroll"(player, pos) {
+        player.dimension.playSound("item.simple_waystone:return_scroll.used", player.location);
+        system.run(() => player.dimension.playSound("item.simple_waystone:return_scroll.used", pos));
         if (player.getGameMode() == GameMode.Creative)
             return false;
         const item = player.getComponent(EntityComponentTypes.Equippable)?.getEquipment(EquipmentSlot.Mainhand);
-        if (!item || item.typeId != "ws:return_scroll")
+        if (!item || (item.typeId != "ws:return_scroll" && item.typeId != "ws:bound_scroll"))
             return true;
-        const comp = item.getComponent("durability");
+        const comp = item.getComponent(ItemComponentTypes.Durability);
         if (!comp)
             return true;
         if (comp.damage + 1 > comp.maxDurability) {

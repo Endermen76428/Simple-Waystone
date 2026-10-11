@@ -1,8 +1,8 @@
 import { teleporterPadTimer } from "../../functions/teleporter/place";
+import { apiScoreboard } from "../../../0-lib/math/scoreboard";
 import { system } from "@minecraft/server";
 import { globalCacheTeleporterPad } from "../cache/global";
 import { teleporterPadCache } from "../cache/teleporter";
-import { apiScoreboard } from "../math/scoreboard";
 export const teleporterPadInfo = new class TeleporterPadInfo {
     create(id) {
         apiScoreboard.addObj("simple_waystone/t/" + id);
@@ -10,7 +10,7 @@ export const teleporterPadInfo = new class TeleporterPadInfo {
     }
     remove(block) {
         const id = `${block.dimension.id.replace("minecraft:", "")}/${block.x},${block.y},${block.z}`;
-        apiScoreboard.removeObj("simple_waystone/t/" + id, true);
+        apiScoreboard.removeObj("simple_waystone/t/" + id);
         system.clearRun(teleporterPadTimer.get(id) ?? 0);
         teleporterPadTimer.delete(id);
         teleporterPadCache.remove(id);
@@ -21,7 +21,8 @@ export const teleporterPadInfo = new class TeleporterPadInfo {
         apiScoreboard.addScore(score, `0/${playerId}`);
         apiScoreboard.addScore(score, `1/${dimension.replace("minecraft:", "")}`);
         apiScoreboard.addScore(score, `2/${pos.x},${pos.y},${pos.z}`);
-        apiScoreboard.setScore(score, `3/broken`, broken ? 1 : 0);
+        apiScoreboard.setScore(score, "3/broken", broken ? 1 : 0);
+        apiScoreboard.setScore(score, "4/offset", 0);
         teleporterPadCache.putShard(id, playerId, dimension, pos, broken);
     }
     removeShard(block) {

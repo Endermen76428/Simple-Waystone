@@ -1,11 +1,11 @@
-import { ItemStack, BlockPermutation, EntityComponentTypes, EquipmentSlot, GameMode } from "@minecraft/server";
+import { BlockPermutation, EntityComponentTypes, EquipmentSlot, GameMode, ItemStack } from "@minecraft/server";
 import { AddonConfig, upgradeXpDiscount } from "../../variables";
+import { apiScoreboard } from "../../../0-lib/math/scoreboard";
 import { MessageFormData } from "@minecraft/server-ui";
-import { waystoneInfo } from "./info";
+import { apiWarn } from "../../../0-lib/player/warn";
 import { apiItemAmount } from "../item/itemAmount";
-import { apiScoreboard } from "../math/scoreboard";
 import { waystoneCache } from "../cache/waystone";
-import { apiWarn } from "../player/warn";
+import { waystoneInfo } from "./info";
 export const apiWaystoneSpace = new class ApiWaystoneSpace {
     setOff(player, block) {
         const above = block.above(1);
@@ -35,7 +35,7 @@ export const apiWaystoneSpace = new class ApiWaystoneSpace {
         waystoneCache.updateColor(indexColor, id);
         apiScoreboard.setScore(`simple_waystone/w/${id}`, "color", indexColor);
         waystone.setPermutation(waystone.permutation.withState("ws:waystone_color", indexColor));
-        apiWarn.playSound(player, "block.simple_waystone:waystone.paint");
+        player.dimension.playSound("block.simple_waystone:waystone.paint", waystone.bottomCenter());
         if (player.getGameMode() == GameMode.Creative)
             return;
         if (item.amount - 1 < 1) {
@@ -54,8 +54,10 @@ export const apiWaystoneSpace = new class ApiWaystoneSpace {
         if (upgradeItem)
             waystone.dimension.spawnItem(new ItemStack(upgradeItem), player.location);
         waystoneCache.updateDiscount(discount, id);
+        waystoneCache.updateLock(true, id);
+        apiScoreboard.setScore(`simple_waystone/w/${id}`, "lock", 1);
         apiScoreboard.setScore(`simple_waystone/w/${id}`, "xp_discount", discount);
-        apiWarn.notify(player, { translate: "warning.simple_waystone:upgrades.xp_cost.success", with: [`${100 - discount}`] }, { sound: "warn.ender_addon_pack:levelup" });
+        apiWarn.notify(player, { translate: "block.warn.simple_waystone:upgrades.xp_cost.success", with: [`${100 - discount}`] }, { sound: "warn.ender_addon_pack:levelup" });
         apiItemAmount.decreaseHand(player, item);
     }
     waystoneToWarpstone(player, waystone) {
@@ -67,7 +69,7 @@ export const apiWaystoneSpace = new class ApiWaystoneSpace {
             .show(player).then(({ canceled, selection }) => {
             if (canceled || selection == 1 || !waystone.isValid)
                 return;
-            apiWarn.playSound(player, "warn.ender_addon_pack:deactive");
+            player.dimension.playSound("warn.ender_addon_pack:deactive", waystone.bottomCenter());
             waystone.dimension.spawnItem(new ItemStack("ws:warpstone"), waystone.center());
             waystoneInfo.removeWaystone(waystone.location, waystone.dimension.id.replace("minecraft:", ""));
             waystone.setType("minecraft:air");
@@ -75,8 +77,8 @@ export const apiWaystoneSpace = new class ApiWaystoneSpace {
         });
     }
     calculateCost(pos, waystone) {
-        const disX = waystone.pos.x - pos.x + 0.5;
-        const disZ = waystone.pos.z - pos.z + 0.5;
+        const disX = waystone.x - pos.x + 0.5;
+        const disZ = waystone.z - pos.z + 0.5;
         const distance = Math.floor(Math.sqrt(disX * disX + disZ * disZ));
         const cost = Math.floor(distance / AddonConfig.xpByDistance);
         return cost < AddonConfig.xpMax ? { cost, distance } : { cost: AddonConfig.xpMax, distance };

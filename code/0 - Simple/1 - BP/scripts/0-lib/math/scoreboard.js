@@ -11,11 +11,15 @@ export const apiScoreboard = new class ApiScoreboard {
             return this.addObj(scoreId);
         return score;
     }
-    removeObj(scoreId, checkBefore = false) {
-        if (checkBefore && typeof scoreId == "string")
-            if (world.scoreboard.getObjective(scoreId) == undefined)
-                return false;
-        return world.scoreboard.removeObjective(scoreId);
+    removeObj(scoreId, recreate = false) {
+        const result = world.scoreboard.removeObjective(scoreId);
+        if (recreate) {
+            if (typeof scoreId == "string")
+                world.scoreboard.addObjective(scoreId);
+            else
+                world.scoreboard.addObjective(scoreId.id);
+        }
+        return result;
     }
     hasObj(scoreId) {
         return world.scoreboard.getObjective(scoreId) != undefined;

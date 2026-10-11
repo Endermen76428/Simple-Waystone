@@ -1,8 +1,8 @@
-import { world, system, Player } from "@minecraft/server";
+import { Player, system, world } from "@minecraft/server";
 import { teleporterPadCache } from "../../lib/cache/teleporter";
 import { teleporterPadSpace } from "../../lib/teleporter/space";
 import { teleporterPadInfo } from "../../lib/teleporter/info";
-import { apiWarn } from "../../lib/player/warn";
+import { apiWarn } from "../../../0-lib/player/warn";
 import { teleporterPadTimer } from "./place";
 const lastDate = {};
 export const teleporterPadStep = new class TeleporterPadStep {
@@ -19,12 +19,15 @@ export const teleporterPadStep = new class TeleporterPadStep {
         if (teleporterPadCache.getTeleporter(`${dimension.replace("minecraft:", "")}/${pos.x},${pos.y},${pos.z}`) == undefined) {
             teleporterPadInfo.removeShard(block);
             teleporterPadSpace.spawnShard(block);
-            entity instanceof Player && apiWarn.notify(entity, "warning.simple_waystone:teleporter.place_shard.target_no_longer_exist", { sound: "warn.ender_addon_pack:bass" });
+            entity instanceof Player && apiWarn.notify(entity, "block.warn.simple_waystone:teleporter.place_shard.target_no_longer_exist", { sound: "warn.ender_addon_pack:bass" });
             return;
         }
         entity.setDynamicProperty("tp_block", block.location);
-        entity instanceof Player && entity.playSound("block.simple_waystone:teleporter_pad.teleporting", { location: block.bottomCenter() });
-        block.dimension.spawnParticle("simple_waystone:teleporter_pad_ring", block.bottomCenter());
+        const bottomCenter = block.bottomCenter();
+        if (teleporterPadTimer.has(id) == false) {
+            block.dimension.playSound("block.simple_waystone:teleporter_pad.teleporting", bottomCenter);
+            block.dimension.spawnParticle("simple_waystone:teleporter_pad_ring", bottomCenter);
+        }
         teleporterPadTimer.set(id, system.runTimeout(() => {
             if (!entity.isValid)
                 return;
@@ -36,12 +39,19 @@ export const teleporterPadStep = new class TeleporterPadStep {
                 if (teleporter.broken) {
                     teleporterPadSpace.setEmptyPad(block);
                     teleporterPadInfo.removeShard(block);
-                    entity instanceof Player && apiWarn.playSound(entity, "block.simple_waystone:teleporter.shard_break", { delaySound: 1, volume: 2 });
+                    block.dimension.playSound("block.simple_waystone:teleporter_pad.shard_break", bottomCenter);
+                    system.run(() => {
+                        block.dimension.playSound("block.simple_waystone:teleporter_pad.shard_break", entity.location);
+                    });
                 }
-                entity instanceof Player && apiWarn.playSound(entity, "block.simple_waystone:waystone.teleport", { delaySound: 1 });
+                block.dimension.playSound("block.simple_waystone:waystone.teleport", bottomCenter);
+                system.run(() => {
+                    block.dimension.playSound("block.simple_waystone:waystone.teleport", entity.location);
+                });
                 entity.addTag("simple_waystone:teleporter");
                 entity.teleport({ x: pos.x + 0.5, y: pos.y + 0.5, z: pos.z + 0.5 }, { dimension: world.getDimension(teleporter.dimension) });
             }
+            teleporterPadTimer.delete(id);
         }, 20 * 3));
     }
     stepOff(block, entity) {

@@ -1,17 +1,20 @@
-import { system, ItemStack, EquipmentSlot, EntityComponentTypes, GameMode, ItemComponentTypes } from "@minecraft/server";
+import { EntityComponentTypes, EquipmentSlot, GameMode, ItemComponentTypes, ItemStack, system } from "@minecraft/server";
+import { boundScrollRegister, boundScrollTeleport } from "../functions/boundScroll";
+import { structureLoaderManager } from "../functions/structures/manager";
 import { teleporterPadInteract } from "../functions/teleporter/interact";
 import { warpstonePedestalInfo } from "../lib/warpstonePedestal/info";
 import { apiWaystoneSpace, dyesList } from "../lib/waystone/space";
 import { teleporterPadPlace } from "../functions/teleporter/place";
-import { teleporterPadStep } from "../functions/teleporter/step";
 import { AddonConfig, upgradeXpDiscountItem } from "../variables";
+import { teleporterPadStep } from "../functions/teleporter/step";
 import { waystoneUISettings } from "../ui/settingsUI";
 import { waystonesList } from "../lib/waystone/list";
 import { waystoneInfo } from "../lib/waystone/info";
+import { apiWarn } from "../../0-lib/player/warn";
 import { waystoneUICreate } from "../ui/createUI";
 import { apiCooldown } from "../lib/apiCooldown";
 import { waystoneUIList } from "../ui/listUI";
-import { apiWarn } from "../lib/player/warn";
+import { apiConfig } from "../lib/apiConfig";
 const replaceBlock = ["minecraft:air", "minecraft:lava", "minecraft:water"];
 system.beforeEvents.startup.subscribe(({ blockComponentRegistry: customB, itemComponentRegistry: customI }) => {
     customB.registerCustomComponent("ws:waystone", {
@@ -40,33 +43,36 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry: customB, itemCo
             const waystone = waystonesList.findWaystone(block.dimension.id, block.location);
             if (!waystone) {
                 apiWaystoneSpace.setOff(player, block);
-                return apiWarn.notify(player, "warning.simple_waystone:waystone.corrupted", { type: "actionbar", sound: "warn.ender_addon_pack:bass" });
+                return apiWarn.notify(player, "block.warn.simple_waystone:waystone.corrupted", { type: "actionbar", sound: "warn.ender_addon_pack:bass" });
             }
             const equippable = player.getComponent(EntityComponentTypes.Equippable);
             if (!equippable)
                 return;
-            const item = equippable.getEquipment(EquipmentSlot.Mainhand)?.typeId;
-            if (player.id == waystone.owner && item) {
-                if (dyes.has(item))
-                    return apiWaystoneSpace.paintWaystone(player, block);
-                if (item == "minecraft:brush")
-                    return apiWaystoneSpace.waystoneToWarpstone(player, block);
-                const discountValue = upgradeXpDiscountItem[item];
-                if (discountValue != undefined && !AddonConfig.disableDiscount)
-                    return apiWaystoneSpace.upgradeXp(player, block, discountValue, item);
+            const itemStack = equippable.getEquipment(EquipmentSlot.Mainhand);
+            if (itemStack != undefined) {
+                const itemId = itemStack.typeId;
+                if (itemId == "ws:return_scroll" || itemId == "ws:bound_scroll")
+                    return boundScrollRegister(player, itemStack, block);
+                if (player.id == waystone.owner) {
+                    if (dyes.has(itemId))
+                        return apiWaystoneSpace.paintWaystone(player, block);
+                    if (itemId == "minecraft:brush")
+                        return apiWaystoneSpace.waystoneToWarpstone(player, block);
+                    const discountValue = upgradeXpDiscountItem[itemId];
+                    if (discountValue != undefined && !AddonConfig.disableDiscount)
+                        return apiWaystoneSpace.upgradeXp(player, block, discountValue, itemId);
+                }
             }
-            if (waystone.owner == player.id && equippable.getEquipment(EquipmentSlot.Mainhand)?.typeId == "minecraft:brush")
-                return apiWaystoneSpace.waystoneToWarpstone(player, block);
             if (waystoneInfo.claimedWaystone(player, waystone))
                 return;
             if (player.isSneaking)
                 return waystoneUISettings(player, waystone.owner, block);
             if (!AddonConfig.tpByBlock)
-                return apiWarn.notify(player, "warning.simple_waystone:waysone.disabled", { sound: "warn.ender_addon_pack:bass" });
+                return apiWarn.notify(player, "block.warn.simple_waystone:waystone.disabled", { sound: "warn.ender_addon_pack:bass" });
             const cooldown = apiCooldown.timeUp(player, "waystoneCooldown");
             if (!cooldown.end)
-                return apiWarn.notify(player, { translate: "warning.simple_waystone:waysone.teleport_cooldown", with: [`${cooldown.time}s`] }, { type: "actionbar" });
-            waystoneUIList(player, block, waystone);
+                return apiWarn.notify(player, { translate: "block.warn.simple_waystone:waystone.teleport_cooldown", with: [`${cooldown.time}s`] }, { type: "actionbar" });
+            waystoneUIList(player, block, waystone, undefined, apiConfig.getConfig(player, "publicFirst"));
         }
     });
     customB.registerCustomComponent("ws:warpstone_pedestal", {
@@ -81,10 +87,10 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry: customB, itemCo
             if (player.isSneaking)
                 return waystoneUISettings(player, player.id, block);
             if (!AddonConfig.tpByBlock)
-                return apiWarn.notify(player, "warning.simple_waystone:waysone.disabled", { sound: "warn.ender_addon_pack:bass" });
+                return apiWarn.notify(player, "block.warn.simple_waystone:waystone.disabled", { sound: "warn.ender_addon_pack:bass" });
             const cooldown = apiCooldown.timeUp(player, "waystoneCooldown");
             if (!cooldown.end)
-                return apiWarn.notify(player, { translate: "warning.simple_waystone:waysone.teleport_cooldown", with: [`${cooldown.time}s`] }, { type: "actionbar" });
+                return apiWarn.notify(player, { translate: "block.warn.simple_waystone:waystone.teleport_cooldown", with: [`${cooldown.time}s`] }, { type: "actionbar" });
             waystoneUIList(player, block, undefined, undefined);
         }
     });
@@ -104,6 +110,9 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry: customB, itemCo
         onPlayerInteract: ({ block, player }) => { if (player)
             teleporterPadInteract.place(block, player); }
     });
+    customB.registerCustomComponent("ws:structure_loader", {
+        onTick: ({ block }) => { structureLoaderManager(block); }
+    });
     customI.registerCustomComponent("ws:warpstone", {
         onUse: ({ source: player, itemStack: item }) => {
             if (!item)
@@ -114,7 +123,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry: customB, itemCo
             }
             const cooldown = apiCooldown.timeUp(player, "warpstoneCooldown");
             if (item.typeId == "ws:warpstone" && !cooldown.end)
-                return apiWarn.notify(player, { translate: "warning.simple_waystone:teleport_item.cooldown", with: [`${cooldown.time}s`] }, { type: "actionbar" });
+                return apiWarn.notify(player, { translate: "item.warn.simple_waystone:teleport_item.cooldown", with: [`${cooldown.time}s`] }, { type: "actionbar" });
             waystoneUIList(player, undefined, undefined, item);
         }
     });
@@ -123,12 +132,33 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry: customB, itemCo
             waystoneUIList(player, undefined, undefined, item);
         },
         onHitEntity: ({ attackingEntity: player, itemStack: item }) => {
-            if (!item) {
+            if (item == undefined) {
                 const newItem = new ItemStack("ws:return_scroll");
                 const durability = newItem.getComponent(ItemComponentTypes.Durability);
                 if (!durability)
                     return;
-                durability.damage = 9;
+                durability.damage = 31;
+                player.getComponent(EntityComponentTypes.Equippable)?.setEquipment(EquipmentSlot.Mainhand, newItem);
+                return;
+            }
+            const durability = item.getComponent(ItemComponentTypes.Durability);
+            if (!durability)
+                return;
+            durability.damage = durability.damage - 2;
+            player.getComponent(EntityComponentTypes.Equippable)?.setEquipment(EquipmentSlot.Mainhand, item);
+        }
+    });
+    customI.registerCustomComponent("ws:bound_scroll", {
+        onUse: ({ source: player, itemStack: item }) => {
+            item && boundScrollTeleport(player, item);
+        },
+        onHitEntity: ({ attackingEntity: player, itemStack: item }) => {
+            if (item == undefined) {
+                const newItem = new ItemStack("ws:bound_scroll");
+                const durability = newItem.getComponent(ItemComponentTypes.Durability);
+                if (!durability)
+                    return;
+                durability.damage = 31;
                 player.getComponent(EntityComponentTypes.Equippable)?.setEquipment(EquipmentSlot.Mainhand, newItem);
                 return;
             }

@@ -1,6 +1,6 @@
+import { apiScoreboard } from "../../../0-lib/math/scoreboard";
 import { world } from "@minecraft/server";
 import { AddonConfig } from "../../variables";
-import { apiScoreboard } from "../math/scoreboard";
 export const globalCacheWaystones = new Map();
 export const globalCachePlayerWaystones = new Map();
 export const globalCacheTeleporterPad = new Map();
@@ -16,7 +16,6 @@ export const apiGlobalCache = new class ApiGlobalCache {
         AddonConfig.itemCooldown = (r => typeof r == "number" ? r : AddonConfig.itemCooldown)(world.getDynamicProperty("config:item_cooldown"));
         AddonConfig.disableDiscount = (r => typeof r == "boolean" ? r : AddonConfig.disableDiscount)(world.getDynamicProperty("config:disable_discount"));
         const scoreboards = world.scoreboard.getObjectives();
-        let date = Date.now();
         const { players, waystones, teleporter } = scoreboards.reduce((acc, score) => {
             const type = score.id.slice(15, 18);
             switch (type) {
@@ -85,7 +84,8 @@ export const apiGlobalCache = new class ApiGlobalCache {
                 icon: waystoneScore.getScore("icon") ?? 0,
                 color: waystoneScore.getScore("color") ?? 0,
                 claim,
-                favorite
+                favorite,
+                lock: waystoneScore.getScore("lock") == 1
             });
         }
     }

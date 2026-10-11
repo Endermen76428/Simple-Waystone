@@ -1,4 +1,4 @@
-import { apiScoreboard } from "../math/scoreboard";
+import { apiScoreboard } from "../../../0-lib/math/scoreboard";
 export const warpstonePedestalInfo = new class WarpstonePedestalInfo {
     create(block, player) {
         const score = apiScoreboard.addObj(`simple_waystone/wp/${block.dimension.id.replace("minecraft:", "")}/${block.x},${block.y},${block.z}`);
@@ -6,6 +6,6 @@ export const warpstonePedestalInfo = new class WarpstonePedestalInfo {
         score.setScore(`0/color`, 0);
     }
     remove(pos, dimension) {
-        apiScoreboard.removeObj(`simple_waystone/wp/${dimension.replace("minecraft:", "")}/${pos.x},${pos.y},${pos.z}`, true);
+        apiScoreboard.removeObj(`simple_waystone/wp/${dimension.replace("minecraft:", "")}/${pos.x},${pos.y},${pos.z}`);
     }
 };

@@ -57,6 +57,11 @@ export const waystoneCache = new class WaystoneCache {
             this.getPlayerCache(playerId).favorite[access].delete(id);
         }
     }
+    updateLock(lock, id) {
+        const cache = globalCacheWaystones.get(id);
+        if (cache)
+            cache.lock = lock;
+    }
     getWaystone(id) { return globalCacheWaystones.get(id); }
     getPlayerWaystoneIds(playerId) { return this.getPlayerCache(playerId); }
     getPublicWaystones() {

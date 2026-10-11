@@ -1,8 +1,8 @@
 import { ActionFormData, ModalFormData } from "@minecraft/server-ui";
-import { apiScoreboard } from "../lib/math/scoreboard";
+import { apiScoreboard } from "../../0-lib/math/scoreboard";
 import { waystoneCache } from "../lib/cache/waystone";
 import { waystonesList } from "../lib/waystone/list";
-import { apiWarn } from "../lib/player/warn";
+import { apiWarn } from "../../0-lib/player/warn";
 import { colorDimension } from "./listUI";
 export function waystoneUIFavorite(player) {
     new ActionFormData()
@@ -35,7 +35,7 @@ function waystoneUIList(player, publicList = false) {
     form.submitButton("ui.simple_waystone:waystone.create.button")
         .show(player).then(({ canceled, formValues }) => {
         if (canceled || formValues == undefined)
-            return apiWarn.notify(player, "warning.simple_waystone:waystone.cancel_settings", { type: "actionbar", sound: "warn.ender_addon_pack:break" });
+            return apiWarn.notify(player, "block.warn.simple_waystone:waystone.cancel_settings", { type: "actionbar", sound: "warn.ender_addon_pack:break" });
         formValues.forEach((value, index) => {
             if (index == 0)
                 return;
@@ -53,6 +53,6 @@ function waystoneUIList(player, publicList = false) {
                 waystoneCache.updateFavorite(player.id, id, accessType, value);
             }
         });
-        apiWarn.notify(player, "warning.simple_waystone:waystone.save_settings", { type: "actionbar", sound: "warn.ender_addon_pack:levelup" });
+        apiWarn.notify(player, "block.warn.simple_waystone:waystone.save_settings", { type: "actionbar", sound: "warn.ender_addon_pack:levelup" });
     });
 }
