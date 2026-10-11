@@ -299,6 +299,12 @@ tile.ws:warpstone_pedestal.name=Pedestal de Warpstone
 
 tile.ws:teleporter_pad.name=Plataforma de Teleporte
 tile.ws:teleporter_pad_empty.name=Plataforma de Teleporte Vazia
+
+### Loaders
+tile.ws:basalt_waystone_loader.name=§c
+tile.ws:cimson_waystone_loader.name=§c
+tile.ws:nether_waystone_loader.name=§c
+tile.ws:house_teleporter_pad_loader.name=§c
 ## #endregion
 
 ## --------------------------------------------------

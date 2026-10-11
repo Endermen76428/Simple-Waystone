@@ -301,7 +301,10 @@ tile.ws:teleporter_pad.name=Teleporter Pad
 tile.ws:teleporter_pad_empty.name=Teleporter Pad Empty
 
 ### Loaders
+tile.ws:basalt_waystone_loader.name=§c
+tile.ws:cimson_waystone_loader.name=§c
 tile.ws:nether_waystone_loader.name=§c
+tile.ws:house_teleporter_pad_loader.name=§c
 ## #endregion
 
 ## --------------------------------------------------
