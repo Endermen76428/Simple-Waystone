@@ -1,0 +1,190 @@
+## --------------------------------------------------
+## #region Blocks
+## --------------------------------------------------
+
+tile.ws:waystone_polished_andesite.name=磨制安山岩传送石
+tile.ws:waystone_polished_diorite.name=磨制闪长岩传送石
+tile.ws:waystone_polished_granite.name=磨制花岗岩传送石
+tile.ws:waystone_chiseled_stone_bricks.name=雕纹石砖传送石
+tile.ws:waystone_polished_tuff.name=磨制凝灰岩传送石
+tile.ws:waystone_chiseled_tuff.name=雕纹凝灰岩传送石
+tile.ws:waystone_chiseled_tuff_bricks.name=雕纹凝灰岩砖传送石
+tile.ws:waystone_polished_deepslate.name=磨制深板岩传送石
+tile.ws:waystone_polished_blackstone.name=磨制黑石传送石
+tile.ws:waystone_polished_basalt.name=磨制玄武岩传送石
+tile.ws:waystone_chiseled_nether_bricks.name=雕纹下界砖传送石
+tile.ws:waystone_prismarine_bricks.name=海晶石砖传送石
+tile.ws:waystone_cut_sandstone.name=切制砂岩传送石
+tile.ws:waystone_cut_red_sandstone.name=切制红砂岩传送石
+tile.ws:waystone_chiseled_resin_bricks.name=雕纹树脂砖传送石
+tile.ws:waystone_quartz_pillar.name=石英柱传送石
+
+tile.ws:warpstone_pedestal.name=扭曲石基座
+
+tile.ws:teleporter_pad.name=传送平台
+tile.ws:teleporter_pad_empty.name=空传送平台
+
+### Loaders
+tile.ws:basalt_waystone_loader.name=§c
+tile.ws:cimson_waystone_loader.name=§c
+tile.ws:nether_waystone_loader.name=§c
+tile.ws:house_teleporter_pad_loader.name=§c
+## #endregion
+
+## --------------------------------------------------
+## #region Items
+## --------------------------------------------------
+
+item.bedrock_awakening:simple_waystone=§k简易传送石
+
+item.ws:warpstone=扭曲石
+item.ws:golden_feather=金羽毛
+item.ws:return_scroll=返回卷轴
+item.ws:bound_scroll=绑定卷轴
+item.ws:teleport_shard=传送碎片
+item.ws:teleport_shard_broken=损坏的传送碎片
+## #endregion
+
+## --------------------------------------------------
+## #region Item Catalog
+## --------------------------------------------------
+
+item_catalog.ws:itemGroup.name.waystone_items=传送石物品
+item_catalog.ws:itemGroup.name.waystones=传送石
+## #endregion
+
+## --------------------------------------------------
+## #region Sounds
+## --------------------------------------------------
+
+### Items
+subtitles.item.simple_waystone:golden_feather.use=已使用金羽毛
+subtitles.item.simple_waystone:return_scroll.use=已使用返回卷轴
+
+### Blocks
+subtitles.block.simple_waystone:waystone.create=已登记传送石
+subtitles.block.simple_waystone:waystone.break=传送石已停用
+subtitles.block.simple_waystone:waystone.claim=已认领传送石
+subtitles.block.simple_waystone:waystone.teleport=传送石传送
+subtitles.block.simple_waystone:waystone.paint=传送石已上色
+subtitles.block.simple_waystone:teleporter_pad.shard_break=传送碎片已破裂
+subtitles.block.simple_waystone:teleporter_pad.teleporting=传送平台正在传送
+## #endregion
+
+## --------------------------------------------------
+## #region Ui
+## --------------------------------------------------
+
+ui.simple_waystone:waystone.create.title=创建传送石
+ui.simple_waystone:waystone.create.textfield=传送石名称：
+ui.simple_waystone:waystone.create.textfieldHold=传送石名称
+ui.simple_waystone:waystone.create.toggle=公共
+ui.simple_waystone:waystone.create.button=保存
+
+ui.simple_waystone:waystone.settings_menu.title=玩家设置
+ui.simple_waystone:waystone.settings_menu.body=配置传送石的相关选项。\n\n
+ui.simple_waystone:waystone.settings_menu.button.edit=编辑
+
+ui.simple_waystone:waystone.edit.title=编辑传送石
+
+ui.simple_waystone:waystone.settings.toggle.organize=A-Z / Z-A
+ui.simple_waystone:waystone.settings.toggle.public_first=优先显示公共传送石
+ui.simple_waystone:waystone.settings.dropdown.organizeDimension=维度顺序：
+ui.simple_waystone:waystone.settings.dropdown.organize_dimension.current=当前
+ui.simple_waystone:waystone.settings.dropdown.organize_dimension.overworld-nether-the_end=§a主世界§r>§4下界§r>§5末地
+ui.simple_waystone:waystone.settings.dropdown.organize_dimension.overworld-the_end-nether=§a主世界§r>§5末地§r>§4下界
+ui.simple_waystone:waystone.settings.dropdown.organize_dimension.nether-overworld-the_end=§4下界§r>§a主世界§r>§5末地
+ui.simple_waystone:waystone.settings.dropdown.organize_dimension.nether-the_end-overworld=§4下界§r>§5末地§r>§a主世界
+ui.simple_waystone:waystone.settings.dropdown.organize_dimension.the_end-overworld-nether=§5末地§r>§a主世界§r>§4下界
+ui.simple_waystone:waystone.settings.dropdown.organize_dimension.the_end-nether-overworld=§5末地§r>§4下界§r>§a主世界
+ui.simple_waystone:waystone.settings.dropdown.show_dimension=显示维度：
+ui.simple_waystone:waystone.settings.dropdown.show_dimension.all=全部
+ui.simple_waystone:waystone.settings.dropdown.show_dimension.overworld=§a主世界
+ui.simple_waystone:waystone.settings.dropdown.show_dimension.nether=§4下界
+ui.simple_waystone:waystone.settings.dropdown.show_dimension.the_end=§5末地
+
+ui.simple_waystone:waystone.remove_waystone.title=移除传送石
+ui.simple_waystone:waystone.remove_waystone.body=选择要移除的传送石。\n§7这只会从全局列表中移除信息，传送石方块仍会留在世界中。\n\n
+ui.simple_waystone:waystone.remove_waystone.confirm.body=确定要删除 - %1 吗？
+
+ui.simple_waystone:waystone.info.title=传送石信息
+ui.simple_waystone:waystone.info.xp_discount=当前经验值折扣：%1%
+ui.simple_waystone:waystone.info.exit_direction=出口方向：
+ui.simple_waystone:waystone.info.exit_direction.auto=自动
+ui.simple_waystone:waystone.info.exit_direction.north=北
+ui.simple_waystone:waystone.info.exit_direction.east=东
+ui.simple_waystone:waystone.info.exit_direction.south=南
+ui.simple_waystone:waystone.info.exit_direction.west=西
+ui.simple_waystone:waystone.info.lock.0=未锁定
+ui.simple_waystone:waystone.info.lock.1=已锁定
+
+ui.simple_waystone:waystone.transform.title=传送石转化
+ui.simple_waystone:waystone.transform.body=要将传送石转化为扭曲石吗？
+
+ui.simple_waystone:waystone.list.title.0=私人传送石%1
+ui.simple_waystone:waystone.list.title.1=公共传送石%1
+ui.simple_waystone:waystone.list.body=选择一个传送目的地：
+ui.simple_waystone:waystone.list.0=私人
+ui.simple_waystone:waystone.list.1=公共
+ui.simple_waystone:waystone.list.other_dimension=其他维度
+
+ui.simple_waystone:favorite.title=收藏的传送石
+ui.simple_waystone:favorite.body=选择要添加到收藏的传送石类型。\n\n
+ui.simple_waystone:favorite.list.body=选择要显示在列表顶部的传送石。\n\n
+
+ui.simple_waystone:admin.settings.title=管理员
+ui.simple_waystone:admin.settings.xp_max=最高经验值费用
+ui.simple_waystone:admin.settings.xp_by_distance=每单位距离增加 1 点经验值费用
+ui.simple_waystone:admin.settings.xp_between_dimension=跨维度传送费用
+ui.simple_waystone:admin.settings.tp_by_block=允许使用传送石传送。
+ui.simple_waystone:admin.settings.tp_between_dimension=允许跨维度传送。
+ui.simple_waystone:admin.settings.tp_cooldown=传送石冷却时间
+ui.simple_waystone:admin.settings.item_cooldown=扭曲石冷却时间
+ui.simple_waystone:admin.settings.disable_discount=禁用折扣升级。
+
+ui.simple_waystone:waystone.no=否
+ui.simple_waystone:waystone.yes=是
+## #endregion
+
+## --------------------------------------------------
+## #region Warning
+## --------------------------------------------------
+
+### Blocks
+block.warn.simple_waystone:waystone.fail_create_waystone=§c名称无效！
+block.warn.simple_waystone:waystone.create_waystone=已创建传送石“%1§r”！
+block.warn.simple_waystone:waystone.not_owner=§c你不是该传送石的所有者！
+block.warn.simple_waystone:waystone.claimed_waystone=已认领传送石“%1§r”！
+block.warn.simple_waystone:waystone.corrupted=§c传送石已损坏！
+block.warn.simple_waystone:waystone.cancel_settings=§c更改已撤销！
+block.warn.simple_waystone:waystone.save_settings=§a更改已保存！
+block.warn.simple_waystone:waystone.fail_find_waystones=§c未找到传送石！
+block.warn.simple_waystone:waystone.insufficient_xp=§c经验值不足！
+block.warn.simple_waystone:waystone.tp_current_waystone=你已经位于这块传送石！
+block.warn.simple_waystone:waystone.dont_deleted_waystones=§c未删除任何传送石！
+block.warn.simple_waystone:waystone.deleted_waystones=已删除传送石 %1！
+block.warn.simple_waystone:waystone.admin.save_settings=<§a简易传送石§r> 玩家 §e%1§r 已更改附加包配置。
+
+block.warn.simple_waystone:waystone.teleport_cooldown=传送石冷却中：%1
+block.warn.simple_waystone:waystone.disabled=§c管理员已禁用传送石传送。
+block.warn.simple_waystone:waystone.locked=§c无法破坏已锁定的传送石。
+
+block.warn.simple_waystone:teleporter.not_owner=§c你不是该传送平台的所有者！
+block.warn.simple_waystone:teleporter.place_shard.same=§c此传送碎片属于该平台，无法放置在这里。
+block.warn.simple_waystone:teleporter.place_shard.target_no_longer_exist=传送碎片中登记的位置已不存在。
+
+block.warn.simple_waystone:upgrades.xp_cost.removed=§c已移除传送折扣。
+block.warn.simple_waystone:upgrades.xp_cost.success=使用此传送石传送可减少 %1% 的经验值消耗。
+
+### Items
+item.warn.simple_waystone:teleport_item.invalid_teleport_item=§c传送物品无效！
+item.warn.simple_waystone:teleport_item.cooldown=扭曲石冷却中：%1
+
+item.warn.simple_waystone:bound_scroll.registered=卷轴已绑定至传送石：%1
+item.warn.simple_waystone:bound_scroll.corrupted=§c卷轴已损坏！
+item.warn.simple_waystone:bound_scroll.invalid_waystone=§c绑定的传送石已失效。
+## #endregion
+
+
+
+pack.description=§5Endermen76428§r 不写描述。

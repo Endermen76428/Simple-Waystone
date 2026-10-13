@@ -1,0 +1,190 @@
+## --------------------------------------------------
+## #region Blocks
+## --------------------------------------------------
+
+tile.ws:waystone_polished_andesite.name=Waystone de andesita pulida
+tile.ws:waystone_polished_diorite.name=Waystone de diorita pulida
+tile.ws:waystone_polished_granite.name=Waystone de granito pulido
+tile.ws:waystone_chiseled_stone_bricks.name=Waystone de ladrillos de piedra cincelados
+tile.ws:waystone_polished_tuff.name=Waystone de toba pulida
+tile.ws:waystone_chiseled_tuff.name=Waystone de toba cincelada
+tile.ws:waystone_chiseled_tuff_bricks.name=Waystone de ladrillos de toba cincelados
+tile.ws:waystone_polished_deepslate.name=Waystone de pizarra profunda pulida
+tile.ws:waystone_polished_blackstone.name=Waystone de piedra negra pulida
+tile.ws:waystone_polished_basalt.name=Waystone de basalto pulido
+tile.ws:waystone_chiseled_nether_bricks.name=Waystone de ladrillos del Nether cincelados
+tile.ws:waystone_prismarine_bricks.name=Waystone de ladrillos de prismarina
+tile.ws:waystone_cut_sandstone.name=Waystone de arenisca cortada
+tile.ws:waystone_cut_red_sandstone.name=Waystone de arenisca roja cortada
+tile.ws:waystone_chiseled_resin_bricks.name=Waystone de ladrillos de resina cincelados
+tile.ws:waystone_quartz_pillar.name=Waystone de pilar de cuarzo
+
+tile.ws:warpstone_pedestal.name=Pedestal de piedra de distorsión
+
+tile.ws:teleporter_pad.name=Plataforma de teletransporte
+tile.ws:teleporter_pad_empty.name=Plataforma de teletransporte vacía
+
+### Loaders
+tile.ws:basalt_waystone_loader.name=§c
+tile.ws:cimson_waystone_loader.name=§c
+tile.ws:nether_waystone_loader.name=§c
+tile.ws:house_teleporter_pad_loader.name=§c
+## #endregion
+
+## --------------------------------------------------
+## #region Items
+## --------------------------------------------------
+
+item.bedrock_awakening:simple_waystone=§kWaystone simple
+
+item.ws:warpstone=Piedra de distorsión
+item.ws:golden_feather=Pluma dorada
+item.ws:return_scroll=Pergamino de retorno
+item.ws:bound_scroll=Pergamino vinculado
+item.ws:teleport_shard=Fragmento de teletransporte
+item.ws:teleport_shard_broken=Fragmento de teletransporte roto
+## #endregion
+
+## --------------------------------------------------
+## #region Item Catalog
+## --------------------------------------------------
+
+item_catalog.ws:itemGroup.name.waystone_items=Objetos de piedras de viaje
+item_catalog.ws:itemGroup.name.waystones=Piedras de viaje
+## #endregion
+
+## --------------------------------------------------
+## #region Sounds
+## --------------------------------------------------
+
+### Items
+subtitles.item.simple_waystone:golden_feather.use=Pluma dorada usada
+subtitles.item.simple_waystone:return_scroll.use=Pergamino de retorno usado
+
+### Blocks
+subtitles.block.simple_waystone:waystone.create=Waystone registrada
+subtitles.block.simple_waystone:waystone.break=Waystone desactivada
+subtitles.block.simple_waystone:waystone.claim=Waystone reclamada
+subtitles.block.simple_waystone:waystone.teleport=Teletransporte de piedra de viaje
+subtitles.block.simple_waystone:waystone.paint=Waystone pintada
+subtitles.block.simple_waystone:teleporter_pad.shard_break=El fragmento se rompió
+subtitles.block.simple_waystone:teleporter_pad.teleporting=Plataforma de teletransporte en uso
+## #endregion
+
+## --------------------------------------------------
+## #region Ui
+## --------------------------------------------------
+
+ui.simple_waystone:waystone.create.title=Crear piedra de viaje
+ui.simple_waystone:waystone.create.textfield=Nombre de la piedra de viaje:
+ui.simple_waystone:waystone.create.textfieldHold=Nombre de la piedra de viaje
+ui.simple_waystone:waystone.create.toggle=Públicas
+ui.simple_waystone:waystone.create.button=Guardar
+
+ui.simple_waystone:waystone.settings_menu.title=Configuración del jugador
+ui.simple_waystone:waystone.settings_menu.body=Configura algunas opciones de tus piedras de viaje.\n\n
+ui.simple_waystone:waystone.settings_menu.button.edit=Editar
+
+ui.simple_waystone:waystone.edit.title=Editar piedra de viaje
+
+ui.simple_waystone:waystone.settings.toggle.organize=A-Z / Z-A
+ui.simple_waystone:waystone.settings.toggle.public_first=Mostrar primero las piedras de viaje públicas
+ui.simple_waystone:waystone.settings.dropdown.organizeDimension=Orden de las dimensiones:
+ui.simple_waystone:waystone.settings.dropdown.organize_dimension.current=Actual
+ui.simple_waystone:waystone.settings.dropdown.organize_dimension.overworld-nether-the_end=§aSuperficie§r>§4Nether§r>§5End
+ui.simple_waystone:waystone.settings.dropdown.organize_dimension.overworld-the_end-nether=§aSuperficie§r>§5End§r>§4Nether
+ui.simple_waystone:waystone.settings.dropdown.organize_dimension.nether-overworld-the_end=§4Nether§r>§aSuperficie§r>§5End
+ui.simple_waystone:waystone.settings.dropdown.organize_dimension.nether-the_end-overworld=§4Nether§r>§5End§r>§aSuperficie
+ui.simple_waystone:waystone.settings.dropdown.organize_dimension.the_end-overworld-nether=§5End§r>§aSuperficie§r>§4Nether
+ui.simple_waystone:waystone.settings.dropdown.organize_dimension.the_end-nether-overworld=§5End§r>§4Nether§r>§aSuperficie
+ui.simple_waystone:waystone.settings.dropdown.show_dimension=Mostrar dimensión:
+ui.simple_waystone:waystone.settings.dropdown.show_dimension.all=Todas
+ui.simple_waystone:waystone.settings.dropdown.show_dimension.overworld=§aSuperficie
+ui.simple_waystone:waystone.settings.dropdown.show_dimension.nether=§4Nether
+ui.simple_waystone:waystone.settings.dropdown.show_dimension.the_end=§5End
+
+ui.simple_waystone:waystone.remove_waystone.title=Eliminar piedra de viaje
+ui.simple_waystone:waystone.remove_waystone.body=Selecciona una piedra de viaje para eliminar.\n§7Esto solo eliminará la información de la lista global; el bloque de la piedra de viaje permanecerá en el mundo.\n\n
+ui.simple_waystone:waystone.remove_waystone.confirm.body=¿Quieres eliminar - %1?
+
+ui.simple_waystone:waystone.info.title=Información de la piedra de viaje
+ui.simple_waystone:waystone.info.xp_discount=Descuento actual de XP: %1%
+ui.simple_waystone:waystone.info.exit_direction=Dirección de salida: 
+ui.simple_waystone:waystone.info.exit_direction.auto=Automática
+ui.simple_waystone:waystone.info.exit_direction.north=Norte
+ui.simple_waystone:waystone.info.exit_direction.east=Este
+ui.simple_waystone:waystone.info.exit_direction.south=Sur
+ui.simple_waystone:waystone.info.exit_direction.west=Oeste
+ui.simple_waystone:waystone.info.lock.0=Desbloqueada
+ui.simple_waystone:waystone.info.lock.1=Bloqueada
+
+ui.simple_waystone:waystone.transform.title=Transformación de la piedra de viaje
+ui.simple_waystone:waystone.transform.body=¿Quieres transformar tu piedra de viaje en una piedra de distorsión?
+
+ui.simple_waystone:waystone.list.title.0=Piedras de viaje privadas%1
+ui.simple_waystone:waystone.list.title.1=Piedras de viaje públicas%1
+ui.simple_waystone:waystone.list.body=Elige un destino para teletransportarte:
+ui.simple_waystone:waystone.list.0=Privadas
+ui.simple_waystone:waystone.list.1=Públicas
+ui.simple_waystone:waystone.list.other_dimension=Otra dimensión
+
+ui.simple_waystone:favorite.title=Piedras de viaje favoritas
+ui.simple_waystone:favorite.body=Selecciona el tipo de piedra de viaje que quieres añadir a favoritos.\n\n
+ui.simple_waystone:favorite.list.body=Selecciona las piedras de viaje que aparecerán al principio de la lista.\n\n
+
+ui.simple_waystone:admin.settings.title=Administrador
+ui.simple_waystone:admin.settings.xp_max=Coste máximo de XP
+ui.simple_waystone:admin.settings.xp_by_distance=Aumenta el coste en 1 XP por distancia
+ui.simple_waystone:admin.settings.xp_between_dimension=Coste entre dimensiones
+ui.simple_waystone:admin.settings.tp_by_block=Permitir teletransportarse usando piedras de viaje.
+ui.simple_waystone:admin.settings.tp_between_dimension=Permitir teletransportarse entre dimensiones.
+ui.simple_waystone:admin.settings.tp_cooldown=Tiempo de reutilización de la piedra de viaje
+ui.simple_waystone:admin.settings.item_cooldown=Tiempo de reutilización de la piedra de distorsión
+ui.simple_waystone:admin.settings.disable_discount=Desactivar mejoras de descuento.
+
+ui.simple_waystone:waystone.no=No
+ui.simple_waystone:waystone.yes=Sí
+## #endregion
+
+## --------------------------------------------------
+## #region Warning
+## --------------------------------------------------
+
+### Blocks
+block.warn.simple_waystone:waystone.fail_create_waystone=§c¡Nombre no válido!
+block.warn.simple_waystone:waystone.create_waystone=¡Waystone "%1§r" creada!
+block.warn.simple_waystone:waystone.not_owner=§c¡No eres el propietario de esta piedra de viaje!
+block.warn.simple_waystone:waystone.claimed_waystone=¡Has reclamado la piedra de viaje "%1§r"!
+block.warn.simple_waystone:waystone.corrupted=§c¡Waystone corrupta!
+block.warn.simple_waystone:waystone.cancel_settings=§c¡Cambios deshechos!
+block.warn.simple_waystone:waystone.save_settings=§a¡Cambios guardados!
+block.warn.simple_waystone:waystone.fail_find_waystones=§c¡No se encontró ninguna piedra de viaje!
+block.warn.simple_waystone:waystone.insufficient_xp=§c¡No tienes suficiente XP!
+block.warn.simple_waystone:waystone.tp_current_waystone=¡Ya estás en esta piedra de viaje!
+block.warn.simple_waystone:waystone.dont_deleted_waystones=§c¡No se eliminó ninguna piedra de viaje!
+block.warn.simple_waystone:waystone.deleted_waystones=¡Waystone %1 eliminada!
+block.warn.simple_waystone:waystone.admin.save_settings=<§aWaystone simple§r> El jugador §e%1§r ha cambiado la configuración del complemento.
+
+block.warn.simple_waystone:waystone.teleport_cooldown=Waystone en reutilización: %1
+block.warn.simple_waystone:waystone.disabled=§cUn administrador ha desactivado el teletransporte mediante piedras de viaje.
+block.warn.simple_waystone:waystone.locked=§cNo puedes romper una piedra de viaje bloqueada.
+
+block.warn.simple_waystone:teleporter.not_owner=§c¡No eres el propietario de esta plataforma de teletransporte!
+block.warn.simple_waystone:teleporter.place_shard.same=§cEste fragmento de teletransporte pertenece a esta plataforma. No se puede colocar aquí.
+block.warn.simple_waystone:teleporter.place_shard.target_no_longer_exist=La ubicación registrada en el fragmento de teletransporte ya no existe.
+
+block.warn.simple_waystone:upgrades.xp_cost.removed=§cSe eliminaron los descuentos de teletransporte.
+block.warn.simple_waystone:upgrades.xp_cost.success=Los teletransportes con esta piedra de viaje cuestan un %1% menos de XP.
+
+### Items
+item.warn.simple_waystone:teleport_item.invalid_teleport_item=§c¡Objeto de teletransporte no válido!
+item.warn.simple_waystone:teleport_item.cooldown=Piedra de distorsión en reutilización: %1
+
+item.warn.simple_waystone:bound_scroll.registered=Pergamino vinculado a la piedra de viaje: %1
+item.warn.simple_waystone:bound_scroll.corrupted=§c¡Pergamino corrupto!
+item.warn.simple_waystone:bound_scroll.invalid_waystone=§cLa piedra de viaje vinculada ya no es válida.
+## #endregion
+
+
+
+pack.description=§5Endermen76428§r no escribe descripciones.
