@@ -1,18 +1,18 @@
 {
   "format_version": 2,
   "header": {
-    "name": "Simple Waystone v9.1 (Texture)",
+    "name": "Simple Waystone v9.2 (Texture)",
     "description": "pack.description",
     "uuid": "4d6ce949-1de7-41ec-87ab-3068434459a4",
     "min_engine_version": [1, 26, 10],
-    "version": [9, 1, 0],
+    "version": [9, 2, 0],
     "pack_scope": "world"
   },
   "modules": [
     {
       "type": "resources",
       "uuid": "877569da-22ae-49e0-bbc4-b7a079050820",
-      "version": [9, 1, 0]
+      "version": [9, 2, 0]
     }
   ],
   "metadata": {
@@ -24,7 +24,7 @@
   "dependencies": [
     {
       "uuid": "e05afa0d-aa45-46bd-82d0-243c605d9737",
-      "version": [9, 1, 0]
+      "version": [9, 2, 0]
     }
   ]
 }
