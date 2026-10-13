@@ -82,9 +82,7 @@ function teleport(player, info, cost) {
     }
     const rideable = player.getComponent(EntityComponentTypes.Rideable);
     const riders = rideable?.getRiders() ?? [];
-    if (!rideable)
-        return;
-    rideable.ejectRiders();
+    rideable?.ejectRiders();
     system.runTimeout(() => {
         const rot = player.getRotation();
         let pos = { x: info.pos.x + 0.5, y: info.pos.y, z: info.pos.z + 0.5 };
