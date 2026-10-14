@@ -129,7 +129,7 @@ function convert_v9_0() {
     const scoreboards = world.scoreboard.getObjectives();
     for (let i = 0, len = scoreboards.length; i < len; i++) {
         const score = scoreboards[i];
-        if (!score)
+        if (!score || !score.displayName.startsWith("simple_waystone/"))
             continue;
         if (score.displayName.slice(15, 18) == "/p/")
             continue;
