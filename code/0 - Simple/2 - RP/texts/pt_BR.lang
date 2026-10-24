@@ -31,6 +31,13 @@ tile.ws:nether_waystone_loader.name=§c
 tile.ws:house_teleporter_pad_loader.name=§c
 ## #endregion
 
+## --------------------------------
+## #region Commands
+## --------------------------------
+
+commands.simple_waystone.admin_panel=Abre o Painel de Administrador das Waystones
+## #endregion
+
 ## --------------------------------------------------
 ## #region Items
 ## --------------------------------------------------

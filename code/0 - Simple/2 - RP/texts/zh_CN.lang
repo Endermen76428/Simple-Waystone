@@ -31,6 +31,13 @@ tile.ws:nether_waystone_loader.name=§c
 tile.ws:house_teleporter_pad_loader.name=§c
 ## #endregion
 
+## --------------------------------
+## #region Commands
+## --------------------------------
+
+commands.simple_waystone.admin_panel=打开传送石管理面板
+## #endregion
+
 ## --------------------------------------------------
 ## #region Items
 ## --------------------------------------------------
