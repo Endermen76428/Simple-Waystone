@@ -1,4 +1,4 @@
-import { CommandPermissionLevel, EntityComponentTypes, EquipmentSlot, GameMode, ItemComponentTypes, ItemStack, Player, system } from "@minecraft/server";
+import { CommandPermissionLevel, CustomCommandStatus, EntityComponentTypes, EquipmentSlot, GameMode, ItemComponentTypes, ItemStack, Player, system } from "@minecraft/server";
 import { boundScrollRegister, boundScrollTeleport } from "../functions/boundScroll";
 import { structureLoaderManager } from "../functions/structures/manager";
 import { teleporterPadInteract } from "../functions/teleporter/interact";
@@ -179,6 +179,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry: customB, itemCo
         if (sourceEntity == undefined || !(sourceEntity instanceof Player))
             return;
         system.run(() => waystoneUIAdmin(sourceEntity));
+        return { status: CustomCommandStatus.Success };
     });
 });
 const dyes = new Set(dyesList);
